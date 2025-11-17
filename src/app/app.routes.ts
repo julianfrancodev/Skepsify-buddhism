@@ -2,11 +2,17 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
-    path: 'tab4',
-    loadComponent: () => import('./tab4/tab4.page').then( m => m.Tab4Page)
+    path: 'onboarding',
+    loadChildren: () =>
+      import('./onboarding/onboarding.routes').then((m) => m.onboardingRoutes),
+  },
+  {
+    path: '',
+    redirectTo: 'onboarding',
+    pathMatch: 'full',
   },
 ];
