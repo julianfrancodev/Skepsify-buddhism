@@ -1,13 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">welcome</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Swiper Carousel -->
+  <swiper-container #swiper pagination="false" navigation="false" class="mySwiper" loop="false">
+    <swiper-slide>
+      <app-slide title="Tu Camino Hacia la Calma Interior" image="/assets/images/sitdown.png"
+        subtitle="Explora la sabiduría ancestral del Budismo Tibetano. Encuentra meditaciones guiadas, enseñanzas profundas y un espacio para el crecimiento personal."
+        buttonText="Siguiente"
+        (buttonClick)="nextSlide()"></app-slide>
+    </swiper-slide>
+    <swiper-slide>
+      <app-slide title="Domina las Prácticas Fundamentales" image="/assets/images/swiming.png"
+        subtitle="Sumérgete en el Ngöndro, las preliminares esenciales. Lleva un registro de tu progreso en prostraciones, mantras y más, profundizando tu compromiso."
+        buttonText="Siguiente"
+        (buttonClick)="nextSlide()"></app-slide>
+    </swiper-slide>
+    <swiper-slide>
+      <app-slide title="Transforma tu Mente, Un Día a la Vez" image="/assets/images/walking.png"
+        subtitle="Cultiva compasión, sabiduría y paz. Conecta con enseñanzas auténticas y desbloquea cursos avanzados para una práctica ilimitada."
+        buttonText="Comenzar"
+        (buttonClick)="startApp()"></app-slide>
+    </swiper-slide>
+  </swiper-container>
 </ion-content>

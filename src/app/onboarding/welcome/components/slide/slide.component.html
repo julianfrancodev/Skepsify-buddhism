@@ -1,0 +1,9 @@
+<div class="slide-content">
+  <h2 class="slide-title">{{ title }}</h2>
+  <img [src]="image" [alt]="title" class="slide-image" />
+  <p class="slide-subtitle">{{ subtitle }}</p>
+
+  <app-button [text]="buttonText" (buttonClick)="buttonClick.emit()"></app-button>
+
+
+</div>

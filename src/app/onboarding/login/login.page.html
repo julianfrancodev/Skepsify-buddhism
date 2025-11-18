@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="login-container">
+    <h1 class="login-title">Bienvenido De Nuevo 🙏🏻</h1>
+    <p class="login-subtitle">Usa tus redes sociales o correo electrónico para comenzar con la experiencia.</p>
+
+    <!-- Botones de Redes Sociales -->
+    <button class="boton-social">
+      <ion-icon aria-hidden="true" name="logo-google"></ion-icon>
+      <span>Continuar con Google</span>
+    </button>
+
+    <!-- Separador -->
+    <div class="separador">o continúa con</div>
+
+    <!-- Formulario de Email -->
+    <div class="input-group">
+      <label class="input-label" for="email">Correo Electrónico</label>
+      <input id="email" type="email" class="input-texto" placeholder="tu@email.com" />
+    </div>
+
+    <div class="input-group">
+      <label class="input-label" for="password">Contraseña</label>
+      <input id="password" type="password" class="input-texto" placeholder="••••••••" />
+    </div>
+
+    <!-- Enlace de Ayuda -->
+    <a href="#" class="enlace-ayuda">Olvidé mi contraseña</a>
+
+    <!-- Botón Principal -->
+    <div class="login-button-container">
+      <app-button text="Iniciar Sesión" (buttonClick)="onLogin()"></app-button>
+    </div>
+
+    <!-- Enlace para Registrarse -->
+    <p class="enlace-toggle">
+      ¿No tienes una cuenta? <span>Regístrate</span>
+    </p>
+
+  </div>
+
 </ion-content>

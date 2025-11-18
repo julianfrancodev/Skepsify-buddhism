@@ -1,0 +1,34 @@
+button {
+  /* --- Colores --- */
+  background-color: #D79A8B; /* Terracota Suave */
+  color: #F8F4EC;           /* Pergamino Pálido (para el texto) */
+
+  /* --- Forma y Tamaño (Píldora) --- */
+  border: none;              /* Sin borde */
+  border-radius: 50px;       /* Esto crea la forma de píldora */
+  padding: 14px 28px;        /* Relleno interno (Alto y Ancho) */
+  width: 100%;               /* Ocupa todo el ancho del contenedor */
+
+  /* --- Tipografía --- */
+  font-size: 16px;
+  font-weight: 600;          /* Semi-Bold (un poco más grueso) */
+  text-align: center;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+
+  /* --- Sombra (Efecto "Neumorfismo" suave) --- */
+  box-shadow: 4px 4px 10px rgba(184, 176, 171, 0.4); /* Sombra suave con Gris Niebla */
+
+  /* --- Comportamiento --- */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición suave para clics/hover */
+}
+
+/* Opcional: Efecto al pasar el mouse (hover) o presionar (active) */
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  box-shadow: 2px 2px 5px rgba(184, 176, 171, 0.3); /* Sombra más pequeña al presionar */
+  transform: translateY(1px); /* Efecto de "presión" */
+}
