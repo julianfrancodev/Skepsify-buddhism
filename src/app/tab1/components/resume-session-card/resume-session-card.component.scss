@@ -1,0 +1,96 @@
+/* --- Contenedor de la Tarjeta (Horizontal) --- */
+.resume-session-card {
+  /* Fondo Pergamino consistente con las otras tarjetas */
+  background-color: #F8F4EC;
+
+  /* Bordes redondeados */
+  border-radius: 20px;
+
+  /* Padding equilibrado para horizontal */
+  padding: 16px 20px;
+
+  /* Márgenes laterales para alinear con el resto */
+  margin: 0 20px 20px 20px;
+
+  /* Flexbox para alinear icono, texto y tiempo horizontalmente */
+  display: flex;
+  align-items: center;
+
+  /* Sombra suave */
+  box-shadow: 0px 4px 15px rgba(92, 80, 74, 0.05);
+
+  /* Interactividad */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto al presionar (Active) */
+.resume-session-card:active {
+  transform: scale(0.98);
+}
+
+/* --- Botón de Play (Izquierda) --- */
+.resume-play-icon {
+  width: 45px;
+  height: 45px;
+
+  /* Color Terracota para denotar acción */
+  background-color: #D79A8B;
+
+  /* Círculo perfecto */
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* El icono (triángulo) será del color del pergamino */
+  color: #F8F4EC;
+  font-size: 18px;
+
+  /* Para que no se aplaste si el texto es largo */
+  flex-shrink: 0;
+}
+
+/* --- Información de Texto (Centro) --- */
+.resume-info {
+  flex: 1; /* Ocupa todo el espacio disponible en medio */
+  margin-left: 15px; /* Separación del icono */
+  margin-right: 15px; /* Separación del tiempo */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #B8B0AB; /* Gris Niebla */
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.resume-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+
+  /* Truco para cortar el texto con "..." si es muy largo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Indicador de Tiempo (Derecha) --- */
+.resume-time-badge {
+  background-color: rgba(215, 154, 139, 0.15); /* Terracota muy transparente */
+  color: #D79A8B; /* Texto Terracota */
+
+  font-size: 12px;
+  font-weight: 600;
+
+  padding: 6px 10px;
+  border-radius: 10px;
+  white-space: nowrap; /* Evita saltos de línea */
+}
