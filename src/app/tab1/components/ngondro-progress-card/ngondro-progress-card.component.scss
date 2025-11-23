@@ -1,0 +1,88 @@
+/* --- Contenedor Principal de la Tarjeta --- */
+.ngondro-hero-card {
+  /* Fondo Pergamino para que destaque sobre el fondo blanco de la app */
+  background-color: #F8F4EC;
+
+  /* Bordes redondeados y suaves (Estilo moderno) */
+  border-radius: 24px;
+
+  /* Espaciado interno generoso para que respire */
+  padding: 24px;
+
+  /* Margen (separación de los lados y abajo) */
+  margin: 0 20px 25px 20px;
+
+  /* Opcional: Un borde muy sutil para definición extra */
+  border: 1px solid rgba(184, 176, 171, 0.3);
+
+  /* Sombra suave para darle "elevación" */
+  box-shadow: 0px 8px 20px rgba(92, 80, 74, 0.08);
+}
+
+/* --- Cabecera de la Tarjeta (Título e Icono) --- */
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+  margin: 0;
+}
+
+.hero-icon {
+  /* Aquí iría tu icono SVG o imagen */
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+  color: #D79A8B; /* Terracota para el icono */
+}
+
+/* --- Estadísticas (Números Grandes) --- */
+.hero-stats {
+  margin-bottom: 15px;
+}
+
+.stat-number {
+  font-size: 36px; /* Grande y legible */
+  font-weight: 800;
+  color: #5C504A; /* Café Oscuro */
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #B8B0AB; /* Gris Niebla */
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* --- Barra de Progreso --- */
+.progress-container {
+  height: 10px;
+  /* Fondo blanco para la barra ("recorte" sobre el pergamino) */
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden; /* Para que el relleno no se salga */
+  margin-bottom: 25px; /* Espacio antes del botón */
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #D79A8B; /* Terracota Suave (Relleno) */
+  border-radius: 10px;
+  width: 15%; /* ANCHO DINÁMICO: Esto lo cambias con JS/React */
+  transition: width 0.5s ease-out; /* Animación suave al cargar */
+}
+
+/* --- Botón de Acción (Reutilizando tu estilo) --- */
+.hero-button-container {
+  width: 100%;
+}
+/* Asegúrate de que tu botón tenga width: 100% aquí */
