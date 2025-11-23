@@ -1,0 +1,168 @@
+/* --- Contenedor de la Tarjeta --- */
+.daily-suggestion-card {
+  /* Fondo Pergamino */
+  background-color: #F8F4EC;
+
+  /* Bordes redondeados */
+  border-radius: 24px;
+
+  /* Padding interno */
+  padding: 20px;
+
+  /* Márgenes para separar de los lados */
+  margin: 0 20px 20px 20px;
+
+  /* Flexbox para alinear imagen (izq) y texto (der) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Sombra suave */
+  box-shadow: 0px 4px 15px rgba(92, 80, 74, 0.05);
+
+  /* Interactividad */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  /* Borde muy sutil opcional */
+  border: 1px solid rgba(184, 176, 171, 0.2);
+}
+
+.daily-suggestion-card:active {
+  transform: scale(0.98);
+}
+
+/* --- Contenedor de la Imagen/Icono (Izquierda) --- */
+.suggestion-visual {
+  width: 60px;
+  height: 60px;
+
+  /* Usamos el Azul Cielo Pálido para evocar calma/aire */
+  background-color: #B0C4D4;
+  opacity: 0.9;
+
+  /* Cuadrado con bordes suaves (Squircle) */
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18px;
+
+  /* Si usas una imagen real, object-fit: cover aquí */
+  overflow: hidden;
+}
+
+.suggestion-icon {
+  font-size: 24px;
+  color: #FFFFFF; /* Icono blanco sobre fondo azul */
+}
+
+/* --- Contenido de Texto (Centro) --- */
+.suggestion-content {
+  flex: 1; /* Ocupa el espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.suggestion-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.suggestion-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+
+  /* Estilo tipo "Badge" */
+  background-color: #FFFFFF;
+  color: #B0C4D4; /* Texto Azul Cielo */
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.suggestion-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+  margin: 0;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.suggestion-meta {
+  font-size: 13px;
+  color: #B8B0AB; /* Gris Niebla */
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+/* Pequeño punto separador */
+.meta-dot {
+  margin: 0 6px;
+  font-size: 8px;
+}
+
+/* --- Flecha de Acción (Derecha) --- */
+.suggestion-arrow {
+  color: #D79A8B; /* Terracota para invitar al clic */
+  font-size: 20px;
+  margin-left: 10px;
+
+  /* Círculo muy sutil de fondo */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(215, 154, 139, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Contenedor del Encabezado de Sección --- */
+.section-header {
+  /* Flexbox para separar título y botón */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alineación vertical centrada */
+
+  /* Márgenes laterales iguales a las tarjetas (20px) */
+  padding: 0 20px;
+
+  /* Espacio arriba y abajo para que no quede pegado */
+  margin-top: 36px;
+  margin-bottom: 20px;
+}
+
+/* --- El Título (Ej: "Explora más", "Cursos") --- */
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+  margin: 0;
+  letter-spacing: -0.3px; /* Un toque moderno */
+}
+
+/* --- El Enlace de Acción (Ej: "Ver todo") --- */
+.section-action {
+  font-size: 20px;
+  font-weight: 600;
+  color: #D79A8B; /* Terracota Suave (Indica que es clicable) */
+
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px; /* Un poco de área extra para el dedo */
+
+  transition: opacity 0.2s ease;
+}
+
+.section-action:active {
+  opacity: 0.7;
+}
