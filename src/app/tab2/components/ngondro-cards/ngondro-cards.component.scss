@@ -1,0 +1,101 @@
+/* --- Contenedor de la Tarjeta --- */
+.ngondro-card {
+  background-color: #FFFFFF; /* Blanco Puro */
+  border-radius: 24px;       /* Bordes muy redondeados */
+  padding: 24px;             /* Espacio interno amplio */
+  margin-bottom: 24px;       /* Separación entre tarjetas */
+
+  /* Sombra profunda estilo Dribbble (Efecto flotante) */
+  box-shadow: 0px 12px 24px rgba(92, 80, 74, 0.08);
+
+  /* Interactividad */
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Efecto al presionar (Feedback) */
+.ngondro-card:active {
+  transform: scale(0.98);
+  box-shadow: 0px 4px 12px rgba(92, 80, 74, 0.05);
+}
+
+/* --- Fila Superior: Emoji y Textos --- */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.card-emoji {
+  font-size: 44px; /* Emoji Grande */
+  line-height: 1;
+  margin-right: 18px;
+  filter: saturate(0.85); /* Suaviza el color del emoji */
+}
+
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+  margin: 0 0 4px 0;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: #B8B0AB; /* Gris Niebla */
+  font-weight: 500;
+  margin: 0;
+}
+
+/* --- Parte Inferior: Progreso --- */
+.progress-number {
+  font-size: 38px; /* Número Gigante */
+  font-weight: 800;
+  color: #5C504A;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+/* Contenedor de la barra y el porcentaje */
+.progress-row {
+  display: flex;
+  align-items: center;
+}
+
+/* El fondo gris de la barra */
+.progress-track {
+  flex: 1;
+  height: 10px;
+  background-color: #F2F0ED; /* Gris cálido muy claro */
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+/* El relleno de color de la barra */
+.progress-fill {
+  height: 100%;
+  background-color: #D79A8B; /* Terracota Suave */
+  border-radius: 10px;
+  transition: width 0.6s ease-out;
+  /* width: se asigna en el HTML (ej: style="width: 20%") */
+}
+
+.progress-percent {
+  font-size: 15px;
+  font-weight: 700;
+  color: #D79A8B; /* Terracota */
+  min-width: 35px;
+  text-align: right;
+}
