@@ -30,7 +30,7 @@
     <app-button text="Iniciar Sesión" (buttonClick)="onLogin()"></app-button>
 
     <!-- Enlace para Registrarse -->
-    <p class="enlace-toggle">
+    <p (click)="goToRegister()" class="enlace-toggle">
       ¿No tienes una cuenta? <span>Regístrate</span>
     </p>
 

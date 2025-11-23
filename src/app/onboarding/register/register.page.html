@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="login-container">
+    <h1 class="login-title">Crea Tu Cuenta 🧘‍♀️</h1>
+    <p class="login-subtitle">Comienza tu viaje hacia la atención plena con nosotros.</p>
+
+    <!-- Botones de Redes Sociales -->
+    <button class="boton-social">
+      <ion-icon aria-hidden="true" name="logo-google"></ion-icon>
+      <span>Continuar con Google</span>
+    </button>
+
+    <!-- Separador -->
+    <div class="separador">o regístrate con</div>
+
+    <!-- Formulario de Registro -->
+    <div class="input-group">
+      <label class="input-label" for="name">Nombre</label>
+      <input id="name" type="text" class="input-texto" placeholder="Tu Nombre" />
+    </div>
+
+    <div class="input-group">
+      <label class="input-label" for="email">Correo Electrónico</label>
+      <input id="email" type="email" class="input-texto" placeholder="tu@email.com" />
+    </div>
+
+    <div class="input-group">
+      <label class="input-label" for="password">Contraseña</label>
+      <input id="password" type="password" class="input-texto" placeholder="••••••••" />
+    </div>
+
+    <!-- Botón Principal -->
+    <app-button text="Crear Cuenta" (buttonClick)="onRegister()"></app-button>
+
+    <!-- Enlace para Iniciar Sesión -->
+    <p (click)="goToLogin()" class="enlace-toggle">
+      ¿Ya tienes una cuenta? <span>Inicia Sesión</span>
+    </p>
+
+  </div>
+
 </ion-content>

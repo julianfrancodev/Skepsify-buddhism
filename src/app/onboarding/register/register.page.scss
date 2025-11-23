@@ -1,0 +1,140 @@
+.login-container {
+  /* Fondo principal de la app */
+  padding: 40px 25px;
+  padding-top: 60px; /* Más espacio arriba ahora que no hay logo */
+
+  /* Flexbox para centrar todo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #5C504A; /* Café Oscuro */
+  text-align: center;
+  margin-bottom: 8px;
+  /* El margen superior ahora lo da el padding-top del .login-container */
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #B8B0AB; /* Gris Niebla */
+  text-align: center;
+  margin-bottom: 30px; /* Espacio antes de los botones */
+}
+
+.boton-social {
+  background-color: transparent;
+  color: #5C504A;
+  border: 1px solid #B8B0AB;
+  border-radius: 50px;
+  padding: 14px;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton-social ion-icon {
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.boton-social:hover {
+  border-color: #5C504A;
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #B8B0AB;
+  font-size: 14px;
+  width: 100%;
+  max-width: 350px;
+  margin: 25px 0;
+}
+
+.separador::before,
+.separador::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #B8B0AB;
+  opacity: 0.5;
+}
+
+.separador:not(:empty)::before {
+  margin-right: 15px;
+}
+
+.separador:not(:empty)::after {
+  margin-left: 15px;
+}
+
+.input-group {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 15px;
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5C504A;
+  margin-bottom: 8px;
+}
+
+.input-texto {
+  background-color: #F8F4EC;
+  color: #5C504A;
+  border: 1px solid #B8B0AB;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.input-texto::placeholder {
+  color: #B8B0AB;
+}
+
+.input-texto:focus {
+  outline: none;
+  border-color: #D79A8B;
+  box-shadow: 0 0 5px rgba(215, 154, 139, 0.3);
+}
+
+.enlace-ayuda {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  text-align: right;
+  margin-bottom: 25px;
+  color: #D79A8B; /* Terracota Suave */
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.enlace-ayuda:hover {
+  text-decoration: underline;
+}
+
+.enlace-toggle {
+  margin-top: 30px;
+  font-weight: 500;
+}
