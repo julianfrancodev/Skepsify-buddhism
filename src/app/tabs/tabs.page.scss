@@ -1,10 +1,34 @@
 
 ion-tab-bar {
   bottom: 20px;
-  position: relative;
+  // Cambiamos a position: absolute para que el contenido pueda pasar por detrás
+  // y se aprecie el efecto blur.
+  position: absolute;
   border-radius: 16px;
   width: 92%;
   margin: 0 auto;
+  // Centramos la barra horizontalmente con position: absolute
+  left: 0;
+  right: 0;
+
+  // Hacemos el fondo de la barra transparente para que el pseudo-elemento sea visible
+  --background: transparent;
+
+  // Pseudo-elemento para crear el efecto de cristal desenfocado
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.35); // Fondo semitransparente
+    -webkit-backdrop-filter: blur(10px); // Efecto de desenfoque
+    backdrop-filter: blur(10px);
+    border-radius: 16px; // Aplicamos el mismo border-radius
+    border: 1.5px solid rgba(0, 0, 0, 0.12); // Borde un poco más grueso y oscuro para mayor visibilidad
+  }
 }
 
 ion-tab-button {
