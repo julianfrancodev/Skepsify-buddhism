@@ -1,0 +1,64 @@
+/* --- Contenedor de la Barra (La Píldora) --- */
+.search-bar-container {
+  background-color: #FFFFFF;
+  /* Blanco Puro */
+  border-radius: 50px;
+  /* Píldora perfecta */
+  padding: 14px 24px;
+  /* Relleno cómodo */
+
+  display: flex;
+  align-items: center;
+
+  /* Sombra suave para que flote */
+  box-shadow: 0px 8px 20px rgba(92, 80, 74, 0.05);
+
+  /* Transición suave para el efecto de foco */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  border: 1px solid transparent;
+  /* Reserva para borde al enfocar */
+}
+
+/* Efecto cuando el usuario toca/enfoca la barra */
+.search-bar-container:focus-within {
+  /* La sombra se hace un poco más intensa */
+  box-shadow: 0px 8px 25px rgba(215, 154, 139, 0.15);
+  /* Un borde sutil color Terracota */
+  border-color: rgba(215, 154, 139, 0.3);
+  transform: translateY(-1px);
+}
+
+/* --- El Icono de Lupa --- */
+.search-icon {
+  margin-top: 7px;
+  padding-left: 15px;
+  font-size: 28px;
+  color: #B8B0AB;
+  /* Gris Niebla (Sutil) */
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* --- El Campo de Texto (Input) --- */
+.search-input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-left: 0;
+  /* Quita el borde azul feo por defecto */
+
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #5C504A;
+  /* Café Oscuro (Texto que escribe el usuario) */
+  font-weight: 500;
+}
+
+/* Color del texto de ayuda (Placeholder) */
+.search-input::placeholder {
+  color: #B8B0AB;
+  /* Gris Niebla */
+  opacity: 1;
+  /* Firefox baja la opacidad por defecto, esto lo corrige */
+}

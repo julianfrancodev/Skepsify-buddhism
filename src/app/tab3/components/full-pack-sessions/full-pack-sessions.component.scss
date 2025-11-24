@@ -1,0 +1,92 @@
+/* --- Cabecera de la Sección Cursos --- */
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.courses-title {
+  font-family: sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: #5C504A; /* Café Oscuro */
+}
+
+.courses-link {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #D79A8B; /* Terracota */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* --- Tarjeta del Curso (Rectangular) --- */
+.course-card {
+  background-color: #FAFAFA; /* Gris muy claro, casi blanco */
+  border-radius: 20px;       /* Bordes redondeados */
+  padding: 16px;             /* Relleno interno */
+  margin-bottom: 0px;       /* Separación vertical reducida */
+
+  display: flex;             /* Layout horizontal */
+  align-items: center;       /* Centrado vertical */
+
+  box-shadow: 0px 4px 15px rgba(92, 80, 74, 0.05); /* Sombra suave */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto al presionar */
+.course-card:active {
+  transform: scale(0.98);
+  box-shadow: 0px 2px 8px rgba(92, 80, 74, 0.05);
+}
+
+/* --- Miniatura / Icono del Curso (Izquierda) --- */
+.course-thumbnail {
+  width: 56px;
+  height: 56px;
+  background-color: #F8F4EC; /* Fondo Pergamino para la imagen */
+  border-radius: 14px;       /* Squircle */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 16px;        /* Espacio con el texto */
+  font-size: 24px;           /* Tamaño del emoji */
+}
+
+/* --- Información del Curso (Centro) --- */
+.course-info {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.course-name {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #5C504A;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.course-meta {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #B8B0AB; /* Gris Niebla */
+}
+
+/* --- Icono de Candado (Derecha) --- */
+.lock-icon {
+  font-size: 18px;
+  color: #E0C99A; /* Oro Pálido para indicar Premium */
+  margin-left: 10px;
+}

@@ -1,0 +1,19 @@
+/* Contenedor del Encabezado (Ajusta el espacio superior) */
+.library-header {
+  margin-top: 50px;    /* Espacio seguro para la barra de estado del móvil */
+  margin-bottom: 20px; /* Separación con la barra de búsqueda o contenido */
+  padding-left: 5px;  /* Pequeño ajuste visual a la izquierda */
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+/* El Título Principal (Ej: "Biblioteca") */
+.library-title {
+  font-family: sans-serif; /* Usa tu fuente principal (Inter, Roboto, etc.) */
+  font-size: 34px;         /* Tamaño grande para jerarquía clara */
+  font-weight: 800;        /* Extra Bold: lo hace ver moderno y premium */
+  color: #5C504A;          /* Café Oscuro */
+  margin: 0;               /* Elimina márgenes por defecto */
+  letter-spacing: -0.8px;  /* Un kerning negativo sutil para elegancia */
+  line-height: 1.1;
+}

@@ -1,0 +1,87 @@
+/* --- Contenedor de la Tarjeta (Azul Cielo) --- */
+.timer-card {
+  /* Usamos el Azul Cielo Pálido para diferenciarlo como herramienta */
+  background-color: #B0C4D4;
+
+  /* Bordes redondeados modernos */
+  border-radius: 24px;
+
+  /* Relleno interno */
+  padding: 22px 26px;
+
+  /* Separación del elemento siguiente */
+  margin-bottom: 30px;
+
+  /* Flexbox para alinear texto a la izquierda e icono a la derecha */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Sombra de color (Glow) - Truco de diseño premium */
+  /* La sombra es del mismo tono azul pero transparente */
+  box-shadow: 0px 10px 25px rgba(176, 196, 212, 0.5);
+
+  /* Interactividad */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden; /* Para efectos de brillo si quisieras */
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Efecto al presionar */
+.timer-card:active {
+  transform: scale(0.98);
+  box-shadow: 0px 5px 15px rgba(176, 196, 212, 0.4);
+}
+
+/* --- Textos (Blanco sobre Azul) --- */
+.timer-info {
+  display: flex;
+  flex-direction: column;
+  z-index: 1; /* Asegura que esté sobre cualquier decoración */
+}
+
+.timer-title {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 800; /* Extra bold */
+  color: #FFFFFF;   /* Blanco Puro */
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.05); /* Sutil sombra de texto */
+}
+
+.timer-subtitle {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9); /* Blanco con un poco de transparencia */
+  margin: 0;
+}
+
+/* --- Caja del Icono (Efecto Cristal/Glassmorphism) --- */
+.timer-icon-box {
+  width: 50px;
+  height: 50px;
+
+  /* Fondo blanco translúcido (Efecto cristal) */
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px); /* Difumina lo que haya detrás (si soportado) */
+
+  border-radius: 16px; /* Squircle */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  color: rgb(76, 76, 76);
+  /* Borde sutil blanco */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.timer-emoji {
+  font-size: 24px;
+  /* No necesita color, es un emoji, pero si fuera icono SVG usaría #FFFFFF */
+}
