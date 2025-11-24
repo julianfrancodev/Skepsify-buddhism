@@ -1,0 +1,89 @@
+/* --- Variables (Paleta Calma Terrenal) --- */
+$color-white: #FFFFFF;
+$color-text-dark: #5C504A;  // Café Oscuro
+$color-text-light: #B8B0AB; // Gris Niebla
+$color-accent: #D79A8B;     // Terracota Suave
+$color-gold: #E0C99A;       // Oro Pálido
+
+.dharma-name-card {
+  background-color: $color-white;
+  border-radius: 20px;
+  padding: 24px 20px; /* Un poco más de padding vertical */
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  /* Sombra suave */
+  box-shadow: 0px 8px 20px rgba(92, 80, 74, 0.06);
+
+  /* Borde sutil dorado para darle importancia */
+  border: 1px solid rgba($color-gold, 0.5);
+
+  position: relative; /* Para posicionar el icono de editar */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  /* --- Icono de Editar (Top Right) --- */
+  .edit-icon-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: $color-text-light;
+    font-size: 18px;
+    opacity: 0.6;
+
+    ion-icon {
+      pointer-events: none; /* Deja pasar el click a la tarjeta */
+    }
+  }
+
+  /* --- Etiqueta Superior --- */
+  .dharma-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Espaciado amplio para elegancia */
+    color: $color-text-light;
+    font-weight: 700;
+    margin-bottom: 12px;
+
+    .label-icon {
+      color: $color-gold;
+      font-size: 14px;
+      margin-right: 6px;
+    }
+  }
+
+  /* --- El Nombre Principal (Protagonista) --- */
+  .dharma-main-name {
+    font-size: 28px; /* Grande y legible */
+    font-weight: 800; /* Extra Bold */
+    color: $color-accent; /* Color Terracota */
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+    font-family: var(--ion-font-family, sans-serif);
+
+    /* Opcional: Si quieres una fuente Serif para que se vea más clásico/espiritual */
+    /* font-family: 'Merriweather', serif; */
+  }
+
+  /* --- Significado --- */
+  .dharma-meaning {
+    font-size: 15px;
+    color: $color-text-dark;
+    font-style: italic; /* Cursiva para diferenciarlo */
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.9;
+  }
+}

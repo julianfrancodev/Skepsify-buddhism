@@ -1,0 +1,59 @@
+/* --- Contenedor Principal --- */
+.profile-header-section {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: var(--ion-font-family, sans-serif); /* Usa la fuente de Ionic */
+}
+
+/* --- El Círculo del Avatar --- */
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+
+  /* Fondo Oro Pálido */
+  background-color: #E0C99A;
+
+  /* Borde blanco y Sombra (Estilo Premium) */
+  border: 5px solid #FFFFFF;
+  box-shadow: 0px 8px 20px rgba(215, 154, 139, 0.3);
+  border-radius: 50%;
+
+  /* Centrar el icono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  /* --- Estilo del Ionicon interno --- */
+  ion-icon {
+    font-size: 64px;  /* Tamaño del icono */
+    color: #5C504A;   /* Color Café Oscuro */
+
+    /* Opcional: Si quieres que sea un poco transparente */
+    /* opacity: 0.9; */
+  }
+}
+
+/* --- Textos --- */
+.profile-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: #5C504A;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.profile-tag {
+  font-size: 16px;
+  color: #8a7f79;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+}

@@ -1,0 +1,86 @@
+/* --- Variables (Paleta Calma Terrenal) --- */
+$color-white: #FFFFFF;
+$color-bg: #F8F4EC;         // Pergamino
+$color-text-dark: #5C504A;  // Café Oscuro
+$color-text-light: #B8B0AB; // Gris Niebla
+$color-accent: #D79A8B;     // Terracota Suave
+
+/* --- El Tile (Baldosa/Tarjeta de Opción) --- */
+.menu-tile {
+  background-color: $color-white;
+  border-radius: 18px; /* Bordes suaves */
+  padding: 16px 20px;  /* Relleno cómodo */
+  margin-bottom: 12px; /* Separación entre opciones */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Sombra sutil */
+  box-shadow: 0px 4px 12px rgba(92, 80, 74, 0.04);
+
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s;
+
+  /* Efecto al tocar */
+  &:active {
+    transform: scale(0.98);
+    background-color: #FAFAFA;
+  }
+
+  /* --- Parte Izquierda (Icono + Texto) --- */
+  .tile-left {
+    display: flex;
+    align-items: center;
+  }
+
+  /* La Cajita del Icono */
+  .icon-box {
+    width: 38px;
+    height: 38px;
+    background-color: $color-bg; /* Fondo Pergamino */
+    border-radius: 12px;         /* Squircle */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+
+    ion-icon {
+      font-size: 20px;
+      color: $color-text-dark; /* Icono Café */
+    }
+  }
+
+  /* El Texto de la Opción */
+  .tile-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-text-dark;
+  }
+
+  /* --- Parte Derecha (Flecha) --- */
+  .tile-arrow {
+    font-size: 18px;
+    color: $color-text-light; /* Gris suave */
+  }
+}
+
+/* --- Variación Específica: CERRAR SESIÓN --- */
+.logout-tile {
+  margin-top: 30px; /* Separarlo un poco más del grupo anterior */
+
+  .tile-text {
+    color: $color-accent; /* Texto color Terracota */
+  }
+
+  /* La cajita del icono de logout es especial */
+  .logout-icon-box {
+    background-color: rgba($color-accent, 0.1); /* Terracota muy transparente */
+
+    ion-icon {
+      color: $color-accent; /* Icono Terracota */
+      padding-left: 2px; /* Ajuste visual óptico para el icono de salida */
+    }
+  }
+}

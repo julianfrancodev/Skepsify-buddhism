@@ -1,0 +1,58 @@
+/* --- Variables (Misma paleta) --- */
+$color-white: #FFFFFF;
+$color-text-dark: #5C504A;  // Café Oscuro
+$color-text-light: #B8B0AB; // Gris Niebla
+
+.stats-card {
+  background-color: $color-white;
+  border-radius: 20px;
+  padding: 20px 10px; /* Menos padding lateral para que quepa todo */
+  margin-bottom: 30px;
+
+  /* Flexbox para poner las 3 columnas en fila */
+  display: flex;
+  justify-content: space-evenly; /* Distribuye el espacio equitativamente */
+  align-items: center;
+
+  /* Sombra suave Premium */
+  box-shadow: 0px 8px 20px rgba(92, 80, 74, 0.06);
+}
+
+/* --- Cada Columna (Item) --- */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1; /* Cada columna ocupa el mismo ancho */
+}
+
+/* El Número (Grande y Fuerte) */
+.stat-value {
+  font-family: var(--ion-font-family, sans-serif);
+  font-size: 24px;   /* Tamaño grande */
+  font-weight: 800;  /* Extra Bold */
+  color: $color-text-dark;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+/* La Etiqueta (Pequeña y Sutil) */
+.stat-label {
+  font-family: var(--ion-font-family, sans-serif);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px; /* Un poco de aire entre letras */
+  color: $color-text-light;
+  font-weight: 600;
+}
+
+/* --- La Línea Divisoria Vertical --- */
+.stat-divider {
+  width: 1px;        /* Grosor de la línea */
+  height: 30px;      /* Altura de la línea (no llega hasta los bordes) */
+  background-color: #F2F0ED; /* Un gris muy muy clarito */
+
+  /* Opcional: Si quieres que se note un poco más usa $color-text-light con opacidad */
+  /* background-color: rgba($color-text-light, 0.2); */
+}

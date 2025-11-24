@@ -1,0 +1,16 @@
+$color-text-light: #B8B0AB; // Gris Niebla
+
+/* --- Título de las Secciones --- */
+.menu-section-title {
+  font-family: var(--ion-font-family, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: $color-text-light;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  padding-left: 8px; /* Pequeña indentación */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}

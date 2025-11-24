@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab4</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab4sd</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <app-profile-picture></app-profile-picture>
+  <app-refuge-details></app-refuge-details>
+  <app-stats-practioner></app-stats-practioner>
+  <div class="menu-section-title">General</div>
+
+  <app-sections-info-user iconName="time-outline" title="Recordatorios"></app-sections-info-user>
+  <app-sections-info-user iconName="calendar-outline" title="Historial"></app-sections-info-user>
+
+
+  <div class="menu-section-title">Cuenta</div>
+
+  <app-sections-info-user iconName="library-outline" title="Recordatorios"></app-sections-info-user>
+  <app-sections-info-user iconName="exit-outline" title="Salir"></app-sections-info-user>
+  <app-sections-info-user iconName="exit-outline" title="Salir"></app-sections-info-user>
+
+
 </ion-content>
