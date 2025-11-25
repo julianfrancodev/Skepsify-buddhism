@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { cardItemsData } from '../../config/cards-data.config';
 
 @Component({
   selector: 'app-ngondro-cards',
@@ -7,8 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NgondroCardsComponent  implements OnInit {
 
-  constructor() { }
+  cardInfo = cardItemsData;
 
-  ngOnInit() {}
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    console.log(this.cardInfo, 'card information');
+
+  }
+
+  goToDetailsCounter(sectionId: string){
+    console.log('goToDetailsCounter');
+    this.router.navigate([`/tabs/tab2/counter/${sectionId}`]);
+  }
 
 }

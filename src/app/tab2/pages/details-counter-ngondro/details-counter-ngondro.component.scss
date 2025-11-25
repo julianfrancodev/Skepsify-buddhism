@@ -1,0 +1,172 @@
+/* --- Variables --- */
+$color-bg: #F8F4EC;
+$color-white: #FFFFFF;
+$color-text-dark: #5C504A;
+$color-text-light: #B8B0AB;
+$color-accent: #D79A8B;     // Terracota
+$color-gold: #E0C99A;
+
+/* --- Header Simple --- */
+.practice-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+
+  .back-icon {
+    font-size: 24px;
+    color: $color-text-dark;
+  }
+  .header-title {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: $color-text-dark;
+  }
+}
+
+/* --- Contenido del Tracker --- */
+.tracker-content {
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 1. Resumen de Progreso (Contexto) */
+.progress-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  margin-top: 30px;
+
+  .summary-emoji { font-size: 120px; margin-bottom: 5px; }
+
+  .summary-text {
+    font-family: sans-serif;
+    margin-bottom: 8px;
+    .current { font-size: 20px; font-weight: 800; color: $color-text-dark; }
+    .total { font-size: 14px; color: $color-text-light; font-weight: 500; }
+  }
+
+  .mini-progress-track {
+    width: 100%;
+    max-width: 200px;
+    height: 6px;
+    background-color: #ECE8E0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .mini-progress-fill {
+      height: 100%;
+      background-color: $color-gold; /* Dorado para el progreso pequeño */
+      border-radius: 10px;
+    }
+  }
+}
+
+/* 2. Tarjeta de Input (El corazón de la pantalla) */
+.input-card {
+  background-color: $color-white;
+  width: 100%;
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: 0px 12px 30px rgba(92, 80, 74, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.input-label {
+  font-family: sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: $color-text-light;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.big-counter-display {
+  font-family: sans-serif;
+  font-size: 64px; /* Número GIGANTE */
+  font-weight: 800;
+  color: $color-text-dark;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.counter-subtitle {
+  font-size: 16px;
+  color: $color-text-light;
+  margin-bottom: 30px;
+}
+
+/* Grid de Botones Rápidos */
+.quick-actions-grid {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.quick-btn {
+  background-color: $color-bg; /* Fondo pergamino */
+  border: none;
+  border-radius: 16px;
+  padding: 15px;
+  min-width: 70px;
+  height: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+
+  /* Texto por defecto */
+  font-family: sans-serif;
+  font-weight: 700;
+  color: $color-text-dark;
+  font-size: 18px;
+
+  &:active { transform: scale(0.95); }
+
+  /* Estilo especial para el botón principal (+108) */
+  &.primary-action {
+    background-color: $color-text-dark; /* Café Oscuro */
+    flex: 1.5; /* Más ancho que los otros */
+
+    .btn-num { color: $color-white; font-size: 22px; }
+    .btn-icon { font-size: 18px; margin-bottom: 2px; }
+    .btn-label { color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 500; text-transform: uppercase; margin-top: 2px;}
+  }
+}
+
+/* 3. Botón de Guardar */
+.save-session-btn {
+  background-color: $color-accent; /* Terracota */
+  color: $color-white;
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 50px; /* Píldora */
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0px 8px 20px rgba(215, 154, 139, 0.4); /* Glow terracota */
+  cursor: pointer;
+
+  &:active { transform: scale(0.98); }
+}
+
+.recent-history-text {
+  margin-top: 20px;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: $color-text-light;
+}

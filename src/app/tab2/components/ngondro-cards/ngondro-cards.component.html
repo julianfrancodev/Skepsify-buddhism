@@ -1,9 +1,9 @@
-<div class="ngondro-card">
+<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[0].id.toString())">
   <div class="card-top">
-    <div class="card-emoji">🙏</div>
+    <div class="card-emoji">{{this.cardInfo[0].emoji}}</div>
     <div class="card-info">
-      <h3 class="card-title">Refugio y Bodhicitta</h3>
-      <p class="card-subtitle">Prostraciones</p>
+      <h3 class="card-title">{{this.cardInfo[0].title}}</h3>
+      <p class="card-subtitle">{{this.cardInfo[0].subtitle}}</p>
     </div>
   </div>
 
@@ -16,12 +16,12 @@
   </div>
 </div>
 
-<div class="ngondro-card">
+<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[1].id.toString())">
   <div class="card-top">
-    <div class="card-emoji">✨</div>
+    <div class="card-emoji">{{this.cardInfo[1].emoji}}</div>
     <div class="card-info">
-      <h3 class="card-title">Vajrasattva</h3>
-      <p class="card-subtitle">Purificación</p>
+      <h3 class="card-title">{{this.cardInfo[1].title}}</h3>
+      <p class="card-subtitle">{{this.cardInfo[1].subtitle}}</p>
     </div>
   </div>
 
@@ -34,12 +34,12 @@
   </div>
 </div>
 
-<div class="ngondro-card">
+<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[2].id.toString())">
   <div class="card-top">
-    <div class="card-emoji">🪷</div>
+    <div class="card-emoji">{{this.cardInfo[2].emoji}}</div>
     <div class="card-info">
-      <h3 class="card-title">Ofrenda de Mandala</h3>
-      <p class="card-subtitle">Acumulación de Mérito</p>
+      <h3 class="card-title">{{this.cardInfo[2].title}}</h3>
+      <p class="card-subtitle">{{this.cardInfo[2].subtitle}}</p>
     </div>
   </div>
 
@@ -52,12 +52,12 @@
   </div>
 </div>
 
-<div class="ngondro-card">
+<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[3].id.toString())">
   <div class="card-top">
-    <div class="card-emoji">🧘</div>
+    <div class="card-emoji">{{this.cardInfo[3].emoji}}</div>
     <div class="card-info">
-      <h3 class="card-title">Guru Yoga</h3>
-      <p class="card-subtitle">Devoción y Bendiciones</p>
+      <h3 class="card-title">{{this.cardInfo[3].title}}</h3>
+      <p class="card-subtitle">{{this.cardInfo[3].subtitle}}</p>
     </div>
   </div>
 

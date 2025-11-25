@@ -17,6 +17,11 @@ export const routes: Routes = [
           import('../tab2/tab2.page').then((m) => m.Tab2Page),
       },
       {
+        path: 'tab2/counter/:id',
+        loadComponent: () =>
+          import('../tab2/pages/details-counter-ngondro/details-counter-ngondro.component').then((m) => m.DetailsCounterNgondroComponent),
+      },
+      {
         path: 'tab3',
         loadComponent: () =>
           import('../tab3/tab3.page').then((m) => m.Tab3Page),
