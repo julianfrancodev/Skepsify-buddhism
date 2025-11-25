@@ -1,21 +1,32 @@
-
-<div class="ngondro-hero-card">
+<div class="ngondro-hero-card" *ngIf="lastPractice() as data">
 
   <div class="hero-header">
-    <h3 class="hero-title">Mi Práctica</h3>
+    <h3 class="hero-title">{{ data.practice.emoji }} {{ data.practice.name }}</h3>
   </div>
 
   <div class="hero-stats">
-    <div class="stat-number">3,500 / 111,111</div>
-    <div class="stat-label">Prostraciones completadas</div>
+    <div class="stat-number">
+      {{ formatNumber(data.progress.totalRepetitions) }} / {{ formatNumber(data.progress.targetRepetitions) }}
+    </div>
+    <div class="stat-label">{{ data.practice.name }} completadas</div>
   </div>
 
   <div class="progress-container">
-    <div class="progress-fill" style="width: 35%;"></div>
-    </div>
-
-  <div class="hero-button-container">
-    <app-button text="Continuar" style="width: 100%; margin-top: 10px;"></app-button>
+    <div class="progress-fill" [style.width.%]="progressPercentage()"></div>
   </div>
 
+  <div class="hero-button-container">
+    <app-button text="Continuar" style="width: 100%; margin-top: 10px;" (click)="continuePractice()"></app-button>
+  </div>
+
+</div>
+
+<!-- Mensaje cuando no hay prácticas -->
+<div class="ngondro-hero-card" *ngIf="!lastPractice()">
+  <div class="hero-header">
+    <h3 class="hero-title">🙏 Comienza tu Práctica</h3>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-label">Aún no has registrado ninguna sesión</div>
+  </div>
 </div>

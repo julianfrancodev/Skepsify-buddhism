@@ -1,0 +1,26 @@
+<div class="keypad-container">
+    <div class="keypad-header">
+        <h2>Ingresar Repeticiones</h2>
+        <ion-icon name="close-outline" (click)="dismiss()"></ion-icon>
+    </div>
+
+    <div class="keypad-display">
+        <span class="display-value">{{ displayValue() || '0' }}</span>
+        <span class="display-label">repeticiones</span>
+    </div>
+
+    <div class="keypad-grid">
+        <button class="keypad-btn" *ngFor="let num of [1,2,3,4,5,6,7,8,9]" (click)="addDigit(num)">
+            {{ num }}
+        </button>
+        <button class="keypad-btn" (click)="clear()">C</button>
+        <button class="keypad-btn" (click)="addDigit(0)">0</button>
+        <button class="keypad-btn" (click)="backspace()">
+            <ion-icon name="backspace-outline"></ion-icon>
+        </button>
+    </div>
+
+    <button class="keypad-confirm-btn" (click)="confirm()">
+        Agregar
+    </button>
+</div>

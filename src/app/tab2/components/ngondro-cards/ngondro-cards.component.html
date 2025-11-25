@@ -1,71 +1,19 @@
-<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[0].id.toString())">
+<div class="ngondro-card" *ngFor="let item of practicesWithProgress()" (click)="goToDetailsCounter(item.practice.id)">
   <div class="card-top">
-    <div class="card-emoji">{{this.cardInfo[0].emoji}}</div>
+    <div class="card-emoji">{{ item.practice.emoji }}</div>
     <div class="card-info">
-      <h3 class="card-title">{{this.cardInfo[0].title}}</h3>
-      <p class="card-subtitle">{{this.cardInfo[0].subtitle}}</p>
+      <h3 class="card-title">{{ item.practice.name }}</h3>
+      <p class="card-subtitle">{{ item.practice.description }}</p>
     </div>
   </div>
 
-  <div class="progress-number">12,500</div>
+  <div class="progress-number">
+    {{ formatNumber(item.progress?.totalRepetitions || 0) }}
+  </div>
   <div class="progress-row">
     <div class="progress-track">
-      <div class="progress-fill" style="width: 11%;"></div>
+      <div class="progress-fill" [style.width.%]="item.percentage"></div>
     </div>
-    <span class="progress-percent">11%</span>
-  </div>
-</div>
-
-<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[1].id.toString())">
-  <div class="card-top">
-    <div class="card-emoji">{{this.cardInfo[1].emoji}}</div>
-    <div class="card-info">
-      <h3 class="card-title">{{this.cardInfo[1].title}}</h3>
-      <p class="card-subtitle">{{this.cardInfo[1].subtitle}}</p>
-    </div>
-  </div>
-
-  <div class="progress-number">45,000</div>
-  <div class="progress-row">
-    <div class="progress-track">
-      <div class="progress-fill" style="width: 40%;"></div>
-    </div>
-    <span class="progress-percent">40%</span>
-  </div>
-</div>
-
-<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[2].id.toString())">
-  <div class="card-top">
-    <div class="card-emoji">{{this.cardInfo[2].emoji}}</div>
-    <div class="card-info">
-      <h3 class="card-title">{{this.cardInfo[2].title}}</h3>
-      <p class="card-subtitle">{{this.cardInfo[2].subtitle}}</p>
-    </div>
-  </div>
-
-  <div class="progress-number">20,100</div>
-  <div class="progress-row">
-    <div class="progress-track">
-      <div class="progress-fill" style="width: 18%;"></div>
-    </div>
-    <span class="progress-percent">18%</span>
-  </div>
-</div>
-
-<div class="ngondro-card" (click)="goToDetailsCounter(this.cardInfo[3].id.toString())">
-  <div class="card-top">
-    <div class="card-emoji">{{this.cardInfo[3].emoji}}</div>
-    <div class="card-info">
-      <h3 class="card-title">{{this.cardInfo[3].title}}</h3>
-      <p class="card-subtitle">{{this.cardInfo[3].subtitle}}</p>
-    </div>
-  </div>
-
-  <div class="progress-number">5,500</div>
-  <div class="progress-row">
-    <div class="progress-track">
-      <div class="progress-fill" style="width: 5%;"></div>
-    </div>
-    <span class="progress-percent">5%</span>
+    <span class="progress-percent">{{ item.percentage }}%</span>
   </div>
 </div>

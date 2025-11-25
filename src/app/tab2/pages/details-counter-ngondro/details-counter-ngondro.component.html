@@ -1,53 +1,54 @@
 <ion-content [fullscreen]="true">
   <div class="practice-detail-header">
     <ion-icon (click)="goBack()" name="arrow-back-circle-outline" class="back-icon"></ion-icon>
-    <span class="header-title">{{pageTitle}}</span>
+    <span class="header-title">{{ practice()?.name || 'Cargando...' }}</span>
     <div style="width: 24px;"></div>
   </div>
 
   <div class="tracker-content">
 
     <div class="progress-summary">
-      <div class="summary-emoji">{{pageEmoji}}</div>
+      <div class="summary-emoji">{{ practice()?.emoji || '🙏' }}</div>
       <div class="summary-text">
-        <span class="current">20,100</span>
-        <span class="total"> / 111,111</span>
+        <span class="current">{{ formatNumber(progress()?.totalRepetitions || 0) }}</span>
+        <span class="total"> / {{ formatNumber(practice()?.targetRepetitions || 0) }}</span>
       </div>
       <div class="mini-progress-track">
-        <div class="mini-progress-fill" style="width: 18%;"></div>
+        <div class="mini-progress-fill" [style.width.%]="progressPercentage()"></div>
       </div>
     </div>
 
     <div class="input-card">
       <h3 class="input-label">Sesión de Hoy</h3>
 
-      <div class="big-counter-display">108</div>
+      <div class="big-counter-display">{{ currentSessionCount() }}</div>
 
       <p class="counter-subtitle">repeticiones</p>
 
       <div class="quick-actions-grid">
-        <button class="quick-btn">
+        <button class="quick-btn" (click)="incrementCounter(21)">
           <span class="btn-num">+21</span>
         </button>
 
-        <button class="quick-btn primary-action">
+        <button class="quick-btn primary-action" (click)="incrementCounter(108)">
           <span class="btn-icon">📿</span>
           <span class="btn-num">+108</span>
           <span class="btn-label">1 Mala</span>
         </button>
 
-        <button class="quick-btn">
+        <button class="quick-btn" (click)="openKeypadModal()">
           <ion-icon name="keypad-outline"></ion-icon>
         </button>
       </div>
     </div>
 
-    <button class="save-session-btn">
+    <button class="save-session-btn" (click)="saveSession()">
       Registrar Práctica
     </button>
 
-    <div class="recent-history-text">
-      Última sesión: <strong>108</strong> (Ayer)
+    <div class="recent-history-text" *ngIf="progress()?.lastSessionRepetitions">
+      Última sesión: <strong>{{ formatNumber(progress()?.lastSessionRepetitions || 0) }}</strong> ({{
+      getLastSessionRelativeDate() }})
     </div>
 
   </div>
