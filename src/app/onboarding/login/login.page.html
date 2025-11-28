@@ -3,10 +3,15 @@
     <h1 class="login-title">Bienvenido De Nuevo 🙏🏻</h1>
     <p class="login-subtitle">Usa tus redes sociales o correo electrónico para comenzar con la experiencia.</p>
 
-    <!-- Botones de Redes Sociales -->
-    <button class="boton-social">
+    <!-- Mensaje de Error -->
+    <div class="error-message" *ngIf="errorMessage()">
+      {{ errorMessage() }}
+    </div>
+
+    <!-- Botón de Google -->
+    <button class="boton-social" (click)="loginWithGoogle()" [disabled]="isLoading()">
       <ion-icon aria-hidden="true" name="logo-google"></ion-icon>
-      <span>Continuar con Google</span>
+      <span>{{ isLoading() ? 'Cargando...' : 'Continuar con Google' }}</span>
     </button>
 
     <!-- Separador -->
@@ -15,19 +20,22 @@
     <!-- Formulario de Email -->
     <div class="input-group">
       <label class="input-label" for="email">Correo Electrónico</label>
-      <input id="email" type="email" class="input-texto" placeholder="tu@email.com" />
+      <input id="email" type="email" class="input-texto" placeholder="tu@email.com" [(ngModel)]="email"
+        [disabled]="isLoading()" />
     </div>
 
     <div class="input-group">
       <label class="input-label" for="password">Contraseña</label>
-      <input id="password" type="password" class="input-texto" placeholder="••••••••" />
+      <input id="password" type="password" class="input-texto" placeholder="••••••••" [(ngModel)]="password"
+        [disabled]="isLoading()" (keyup.enter)="loginWithEmail()" />
     </div>
 
     <!-- Enlace de Ayuda -->
     <a href="#" class="enlace-ayuda">Olvidé mi contraseña</a>
 
     <!-- Botón Principal -->
-    <app-button text="Iniciar Sesión" (buttonClick)="onLogin()"></app-button>
+    <app-button text="Iniciar Sesión" (buttonClick)="loginWithEmail()">
+    </app-button>
 
     <!-- Enlace para Registrarse -->
     <p (click)="goToRegister()" class="enlace-toggle">

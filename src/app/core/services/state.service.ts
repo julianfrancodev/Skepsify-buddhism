@@ -5,6 +5,7 @@ import {
     Practice,
     Session,
     PracticeProgress,
+    MeditationSession,
     DEFAULT_PRACTICES
 } from '../models/models';
 
@@ -20,13 +21,15 @@ export class StateService {
     private readonly STORAGE_KEYS = {
         USER: 'user',
         SESSIONS: 'sessions',
-        PRACTICES: 'practices'
+        PRACTICES: 'practices',
+        MEDITATION_SESSIONS: 'meditationSessions'
     };
 
     // Signals para el estado
     user = signal<User | null>(null);
     practices = signal<Practice[]>(DEFAULT_PRACTICES);
     sessions = signal<Session[]>([]);
+    meditationSessions = signal<MeditationSession[]>([]);
 
     // Computed signals para datos derivados
     practiceProgress = computed(() => {
@@ -103,6 +106,18 @@ export class StateService {
                 }));
                 this.sessions.set(sessionsWithDates);
             }
+
+            // Cargar sesiones de meditación
+            const meditationSessions = await this.storageService.get<MeditationSession[]>(
+                this.STORAGE_KEYS.MEDITATION_SESSIONS
+            );
+            if (meditationSessions) {
+                const meditationSessionsWithDates = meditationSessions.map(s => ({
+                    ...s,
+                    date: new Date(s.date)
+                }));
+                this.meditationSessions.set(meditationSessionsWithDates);
+            }
         } catch (error) {
             console.error('Error cargando datos iniciales:', error);
         }
@@ -142,6 +157,41 @@ export class StateService {
             return newSession;
         } catch (error) {
             console.error('Error agregando sesión:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * Agrega una nueva sesión de meditación (timer)
+     */
+    async addMeditationSession(
+        durationMinutes: number,
+        completedMinutes: number,
+        completed: boolean,
+        notes?: string
+    ) {
+        try {
+            const newSession: MeditationSession = {
+                id: this.generateId(),
+                durationMinutes,
+                completedMinutes,
+                date: new Date(),
+                completed,
+                notes
+            };
+
+            const updatedSessions = [...this.meditationSessions(), newSession];
+            this.meditationSessions.set(updatedSessions);
+
+            await this.storageService.set(
+                this.STORAGE_KEYS.MEDITATION_SESSIONS,
+                updatedSessions
+            );
+
+            console.log('Sesión de meditación guardada:', newSession);
+            return newSession;
+        } catch (error) {
+            console.error('Error agregando sesión de meditación:', error);
             throw error;
         }
     }

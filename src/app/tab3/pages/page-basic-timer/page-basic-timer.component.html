@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Header -->
+  <div class="timer-header">
+    <ion-icon name="arrow-back-circle-outline" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">Temporizador de Meditación</h1>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="timer-content">
+
+    <!-- Display del Timer -->
+    <div class="timer-display-card">
+      <div class="timer-display">
+        {{ displayTime() }}
+      </div>
+      <div class="timer-subtitle">
+        {{ isRunning() ? 'Meditando...' : 'Listo para comenzar' }}
+      </div>
+    </div>
+
+    <!-- Barra de Progreso -->
+    <div class="progress-container">
+      <div class="progress-fill" [style.width.%]="progressPercentage()"></div>
+    </div>
+
+    <!-- Botones de Control -->
+    <div class="control-buttons">
+      <button class="control-btn secondary" (click)="resetTimer()">
+        <ion-icon name="refresh-outline"></ion-icon>
+        <span>Reiniciar</span>
+      </button>
+
+      <button class="control-btn primary" (click)="toggleTimer()">
+        <ion-icon [name]="isRunning() ? 'pause-outline' : 'play-outline'"></ion-icon>
+        <span>{{ isRunning() ? 'Pausar' : 'Iniciar' }}</span>
+      </button>
+    </div>
+
+    <!-- Tiempos Predefinidos -->
+    <div class="preset-times">
+      <h3 class="preset-title">Tiempo de Práctica</h3>
+      <div class="preset-grid">
+        <button *ngFor="let preset of presetTimes" class="preset-btn"
+          [class.active]="totalSeconds() === preset.seconds && !isRunning()" (click)="setPresetTime(preset.seconds)"
+          [disabled]="isRunning()">
+          {{ preset.label }}
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

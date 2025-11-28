@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { hourglassOutline } from 'ionicons/icons';
@@ -9,12 +10,16 @@ import { hourglassOutline } from 'ionicons/icons';
   styleUrls: ['./free-basic-timer.component.scss'],
   imports: [IonIcon]
 })
-export class FreeBasicTimerComponent  implements OnInit {
+export class FreeBasicTimerComponent implements OnInit {
 
-  constructor() {
-    addIcons({hourglassOutline})
-   }
+  constructor(private router: Router) {
+    addIcons({ hourglassOutline })
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  goToBasicTimerPage() {
+    this.router.navigate(['tabs/tab3/basic-timer'])
+  }
 
 }

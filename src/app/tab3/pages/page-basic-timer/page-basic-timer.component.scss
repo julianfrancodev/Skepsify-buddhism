@@ -1,0 +1,200 @@
+/* --- Variables (consistentes con el proyecto) --- */
+$color-bg: #F8F4EC;
+$color-white: #FFFFFF;
+$color-text-dark: #5C504A;
+$color-text-light: #B8B0AB;
+$color-accent: #D79A8B; // Terracota
+$color-gold: #E0C99A;
+
+/* --- Header --- */
+.timer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: $color-white;
+
+    .back-icon {
+        font-size: 24px;
+        color: $color-text-dark;
+        cursor: pointer;
+    }
+
+    .header-title {
+        font-family: sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: $color-text-dark;
+        margin: 0;
+    }
+
+    .spacer {
+        width: 24px; // Para centrar el título
+    }
+}
+
+/* --- Contenido --- */
+.timer-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* --- Display del Timer --- */
+.timer-display-card {
+    background-color: $color-white;
+    border-radius: 24px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 12px 30px rgba(92, 80, 74, 0.08);
+    text-align: center;
+}
+
+.timer-display {
+    font-family: sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: $color-text-dark;
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.timer-subtitle {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: $color-text-light;
+    font-weight: 500;
+}
+
+/* --- Barra de Progreso --- */
+.progress-container {
+    width: 100%;
+    max-width: 400px;
+    height: 8px;
+    background-color: #ECE8E0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $color-gold 0%, $color-accent 100%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* --- Botones de Control --- */
+.control-buttons {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.control-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    font-family: sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+
+    ion-icon {
+        font-size: 32px;
+    }
+
+    span {
+        font-size: 14px;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &.primary {
+        background-color: $color-accent;
+        color: $color-white;
+        box-shadow: 0px 8px 20px rgba(215, 154, 139, 0.4);
+
+        &:hover {
+            box-shadow: 0px 12px 24px rgba(215, 154, 139, 0.5);
+        }
+    }
+
+    &.secondary {
+        background-color: $color-bg;
+        color: $color-text-dark;
+        box-shadow: 0px 4px 12px rgba(92, 80, 74, 0.06);
+
+        &:hover {
+            background-color: darken($color-bg, 3%);
+        }
+    }
+}
+
+/* --- Tiempos Predefinidos --- */
+.preset-times {
+    width: 100%;
+    max-width: 400px;
+}
+
+.preset-title {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-text-dark;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.preset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 12px;
+}
+
+.preset-btn {
+    background-color: $color-white;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 16px 12px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-text-dark;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0px 4px 12px rgba(92, 80, 74, 0.06);
+
+    &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0px 6px 16px rgba(92, 80, 74, 0.1);
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.95);
+    }
+
+    &.active {
+        background-color: $color-accent;
+        color: $color-white;
+        border-color: $color-accent;
+        box-shadow: 0px 6px 16px rgba(215, 154, 139, 0.3);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

@@ -35,6 +35,18 @@ export interface Session {
 }
 
 /**
+ * Registro de una sesión de meditación con temporizador
+ */
+export interface MeditationSession {
+    id: string;
+    durationMinutes: number; // Duración en minutos
+    completedMinutes: number; // Minutos completados (puede ser menor si se pausó)
+    date: Date;
+    completed: boolean; // Si se completó el tiempo total
+    notes?: string;
+}
+
+/**
  * Progreso acumulado de una práctica
  */
 export interface PracticeProgress {
@@ -53,6 +65,7 @@ export interface AppState {
     user: User | null;
     practices: Practice[];
     sessions: Session[];
+    meditationSessions: MeditationSession[];
     practiceProgress: Map<string, PracticeProgress>;
 }
 
