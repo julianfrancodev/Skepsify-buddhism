@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { arrowForwardOutline, calendarOutline, exitOutline, libraryOutline, timeOutline } from 'ionicons/icons';
@@ -9,16 +9,20 @@ import { arrowForwardOutline, calendarOutline, exitOutline, libraryOutline, time
   styleUrls: ['./sections-info-user.component.scss'],
   imports: [IonIcon]
 })
-export class SectionsInfoUserComponent  implements OnInit {
+export class SectionsInfoUserComponent implements OnInit {
 
   @Input() iconName: string = '';
   @Input() title: string = '';
-  @Input() OnClickOpenScreen: () => void = () => {};
+  @Output() OnClickOpenScreen = new EventEmitter<void>();
 
   constructor() {
-    addIcons({timeOutline, calendarOutline, libraryOutline, exitOutline, arrowForwardOutline})
-   }
+    addIcons({ timeOutline, calendarOutline, libraryOutline, exitOutline, arrowForwardOutline })
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  handleClick() {
+    this.OnClickOpenScreen.emit();
+  }
 
 }

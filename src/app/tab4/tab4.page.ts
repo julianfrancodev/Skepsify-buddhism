@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon } from '@ionic/angular/standalone';
@@ -6,6 +6,8 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
 import { RefugeDetailsComponent } from './components/refuge-details/refuge-details.component';
 import { StatsPractionerComponent } from './components/stats-practioner/stats-practioner.component';
 import { SectionsInfoUserComponent } from './components/sections-info-user/sections-info-user.component';
+import { AuthService } from '../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
@@ -16,9 +18,19 @@ import { SectionsInfoUserComponent } from './components/sections-info-user/secti
 })
 export class Tab4Page implements OnInit {
 
+  authService = inject(AuthService);
+  router = inject(Router);
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    console.log('logout');
+
+    this.authService.logout();
+    this.router.navigate(['/onboarding/login']);
   }
 
 }
