@@ -1,13 +1,13 @@
 import { Routes } from "@angular/router";
 import { OnboardingPage } from "./onboarding.page";
-
-
+import { noAuthGuard } from "../core/guards/no-auth.guard";
 
 export const onboardingRoutes: Routes = [
   {
     path: '',
     component: OnboardingPage,
-    children:[
+    canActivate: [noAuthGuard], // Proteger todas las rutas de onboarding
+    children: [
       {
         path: 'welcome',
         loadComponent: () =>

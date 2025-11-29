@@ -1,10 +1,14 @@
 <div class="profile-header-section">
 
+  <!-- Avatar estático con ícono -->
   <div class="avatar-placeholder">
     <ion-icon name="person-circle-outline"></ion-icon>
   </div>
 
-  <h1 class="profile-name">Tenzin Alex</h1>
-  <p class="profile-tag">Practicante desde 2024</p>
+  <!-- Nombre del usuario desde Firebase -->
+  <h1 class="profile-name">{{ userDisplayName() }}</h1>
+
+  <!-- Año de registro desde Firebase -->
+  <p class="profile-tag">Practicante desde {{ userSince() }}</p>
 
 </div>

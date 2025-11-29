@@ -8,7 +8,8 @@
   padding-bottom: 30px;
   margin-left: 20px;
   margin-right: 20px;
-  font-family: var(--ion-font-family, sans-serif); /* Usa la fuente de Ionic */
+  font-family: var(--ion-font-family, sans-serif);
+  /* Usa la fuente de Ionic */
 }
 
 /* --- El Círculo del Avatar --- */
@@ -33,12 +34,25 @@
 
   /* --- Estilo del Ionicon interno --- */
   ion-icon {
-    font-size: 64px;  /* Tamaño del icono */
-    color: #5C504A;   /* Color Café Oscuro */
+    font-size: 64px;
+    /* Tamaño del icono */
+    color: #5C504A;
+    /* Color Café Oscuro */
 
     /* Opcional: Si quieres que sea un poco transparente */
     /* opacity: 0.9; */
   }
+}
+
+/* --- Imagen de Perfil (Google Photo) --- */
+.avatar-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #FFFFFF;
+  box-shadow: 0px 8px 20px rgba(215, 154, 139, 0.3);
+  object-fit: cover;
+  margin-bottom: 15px;
 }
 
 /* --- Textos --- */
