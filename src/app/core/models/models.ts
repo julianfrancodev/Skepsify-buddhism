@@ -102,3 +102,69 @@ export const DEFAULT_PRACTICES: Practice[] = [
         description: 'Práctica de devoción y conexión con el maestro'
     }
 ];
+
+/**
+ * Programa de meditación (ej: Tonglen, Shamatha)
+ */
+export interface Program {
+    id: string;
+    title: string;
+    description: string;
+    category: 'compassion' | 'mindfulness' | 'wisdom' | 'concentration';
+    level: 'beginner' | 'intermediate' | 'advanced' | 'all';
+    coverImageUrl: string;
+    instructor: string;
+    totalSessions: number;
+    estimatedDuration: number; // minutos totales
+    isPremium: boolean;
+    order: number;
+    createdAt: Date;
+}
+
+/**
+ * Paquete de sesiones dentro de un programa
+ */
+export interface MeditationPackage {
+    id: string;
+    programId: string;
+    title: string;
+    description: string;
+    order: number;
+    level: 'beginner' | 'intermediate' | 'advanced';
+    sessionCount: number;
+    totalDuration: number;
+    coverImageUrl?: string;
+}
+
+/**
+ * Sesión individual de meditación con audio
+ */
+export interface ProgramSession {
+    id: string;
+    programId: string;
+    packageId: string;
+    title: string;
+    description: string;
+    order: number;
+    durationMinutes: number;
+    audioUrl: string;
+    transcriptUrl?: string;
+    coverImageUrl?: string;
+    instructor: string;
+    isPremium: boolean;
+    tags: string[];
+}
+
+/**
+ * Progreso del usuario en un programa
+ */
+export interface ProgramProgress {
+    programId: string;
+    startedAt: Date;
+    lastAccessedAt: Date;
+    completedPackages: string[];
+    completedSessions: string[];
+    currentPackageId?: string;
+    currentSessionId?: string;
+    totalMinutesCompleted: number;
+}

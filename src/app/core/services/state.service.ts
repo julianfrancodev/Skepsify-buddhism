@@ -1,5 +1,7 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, effect } from '@angular/core';
 import { StorageService } from './storage.service';
+import { AuthService } from './auth.service';
+import { FirestoreService } from './firestore.service';
 import {
     User,
     Practice,
@@ -17,19 +19,46 @@ import {
     providedIn: 'root'
 })
 export class StateService {
-    // Storage keys
-    private readonly STORAGE_KEYS = {
-        USER: 'user',
-        SESSIONS: 'sessions',
-        PRACTICES: 'practices',
-        MEDITATION_SESSIONS: 'meditationSessions'
-    };
+    // UID del usuario actual de Firebase
+    private currentFirebaseUID = signal<string | null>(null);
 
     // Signals para el estado
     user = signal<User | null>(null);
     practices = signal<Practice[]>(DEFAULT_PRACTICES);
     sessions = signal<Session[]>([]);
     meditationSessions = signal<MeditationSession[]>([]);
+
+    constructor(
+        private storageService: StorageService,
+        private authService: AuthService,
+        private firestoreService: FirestoreService
+    ) {
+        // Escuchar cambios en el usuario de Firebase
+        effect(() => {
+            const firebaseUser = this.authService.currentUser();
+            const newUID = firebaseUser?.uid || null;
+            const previousUID = this.currentFirebaseUID();
+
+            // Si cambió el usuario, actualizar UID y recargar datos
+            if (newUID !== previousUID) {
+                console.log('🔄 Usuario cambió:', previousUID, '→', newUID);
+                this.currentFirebaseUID.set(newUID);
+                this.loadUserData();
+            }
+        });
+    }
+
+    /**
+     * Genera las keys de storage con prefijo del usuario
+     */
+    private getStorageKey(key: string): string {
+        const uid = this.currentFirebaseUID();
+        if (!uid) {
+            // Si no hay usuario autenticado, usar keys globales (fallback)
+            return key;
+        }
+        return `user_${uid}_${key}`;
+    }
 
     // Computed signals para datos derivados
     practiceProgress = computed(() => {
@@ -65,38 +94,45 @@ export class StateService {
         return progressMap;
     });
 
-    constructor(private storageService: StorageService) {
-        this.loadInitialData();
-    }
-
     /**
-     * Carga los datos iniciales desde el storage
+     * Carga los datos del usuario actual desde el storage
      */
-    private async loadInitialData() {
+    private async loadUserData() {
         try {
+            const uid = this.currentFirebaseUID();
+
+            if (!uid) {
+                // No hay usuario autenticado, limpiar datos
+                console.log('❌ No hay usuario autenticado, limpiando datos');
+                this.user.set(null);
+                this.sessions.set([]);
+                this.meditationSessions.set([]);
+                this.practices.set(DEFAULT_PRACTICES);
+                return;
+            }
+
+            console.log('📂 Cargando datos para usuario:', uid);
+
             // Cargar usuario
-            const user = await this.storageService.get<User>(this.STORAGE_KEYS.USER);
+            const user = await this.storageService.get<User>(this.getStorageKey('user'));
             if (user) {
                 this.user.set(user);
             }
 
-            // Cargar prácticas (o usar las predeterminadas)
+            // Cargar prácticas personalizadas o usar las por defecto
             const practices = await this.storageService.get<Practice[]>(
-                this.STORAGE_KEYS.PRACTICES
+                this.getStorageKey('practices')
             );
-            if (practices && practices.length > 0) {
+            if (practices) {
                 this.practices.set(practices);
             } else {
-                // Guardar las prácticas predeterminadas
-                await this.storageService.set(
-                    this.STORAGE_KEYS.PRACTICES,
-                    DEFAULT_PRACTICES
-                );
+                // Si no hay prácticas guardadas, usar las por defecto
+                this.practices.set(DEFAULT_PRACTICES);
             }
 
             // Cargar sesiones
             const sessions = await this.storageService.get<Session[]>(
-                this.STORAGE_KEYS.SESSIONS
+                this.getStorageKey('sessions')
             );
             if (sessions) {
                 // Convertir las fechas de string a Date
@@ -105,21 +141,21 @@ export class StateService {
                     date: new Date(s.date)
                 }));
                 this.sessions.set(sessionsWithDates);
+            } else {
+                this.sessions.set([]);
             }
 
-            // Cargar sesiones de meditación
-            const meditationSessions = await this.storageService.get<MeditationSession[]>(
-                this.STORAGE_KEYS.MEDITATION_SESSIONS
-            );
-            if (meditationSessions) {
-                const meditationSessionsWithDates = meditationSessions.map(s => ({
-                    ...s,
-                    date: new Date(s.date)
-                }));
-                this.meditationSessions.set(meditationSessionsWithDates);
+            // TODO: Cargar sesiones de meditación desde Firestore
+            if (uid) {
+                const meditationSessions = await this.firestoreService.getMeditationSessions(uid);
+                this.meditationSessions.set(meditationSessions);
+            } else {
+                this.meditationSessions.set([]);
             }
+
+            console.log('✅ Datos cargados correctamente');
         } catch (error) {
-            console.error('Error cargando datos iniciales:', error);
+            console.error('❌ Error cargando datos del usuario:', error);
         }
     }
 
@@ -129,7 +165,7 @@ export class StateService {
     async saveUser(user: User) {
         try {
             this.user.set(user);
-            await this.storageService.set(this.STORAGE_KEYS.USER, user);
+            await this.storageService.set(this.getStorageKey('user'), user);
         } catch (error) {
             console.error('Error guardando usuario:', error);
             throw error;
@@ -152,7 +188,7 @@ export class StateService {
             const updatedSessions = [...this.sessions(), newSession];
             this.sessions.set(updatedSessions);
 
-            await this.storageService.set(this.STORAGE_KEYS.SESSIONS, updatedSessions);
+            await this.storageService.set(this.getStorageKey('sessions'), updatedSessions);
 
             return newSession;
         } catch (error) {
@@ -161,9 +197,6 @@ export class StateService {
         }
     }
 
-    /**
-     * Agrega una nueva sesión de meditación (timer)
-     */
     async addMeditationSession(
         durationMinutes: number,
         completedMinutes: number,
@@ -171,6 +204,11 @@ export class StateService {
         notes?: string
     ) {
         try {
+            const uid = this.currentFirebaseUID();
+            if (!uid) {
+                throw new Error('No hay usuario autenticado');
+            }
+
             const newSession: MeditationSession = {
                 id: this.generateId(),
                 durationMinutes,
@@ -180,15 +218,14 @@ export class StateService {
                 notes
             };
 
+            // Guardar en Firestore
+            await this.firestoreService.addMeditationSession(uid, newSession);
+
+            // Actualizar signal
             const updatedSessions = [...this.meditationSessions(), newSession];
             this.meditationSessions.set(updatedSessions);
 
-            await this.storageService.set(
-                this.STORAGE_KEYS.MEDITATION_SESSIONS,
-                updatedSessions
-            );
-
-            console.log('Sesión de meditación guardada:', newSession);
+            console.log('✅ Sesión de meditación guardada en Firestore');
             return newSession;
         } catch (error) {
             console.error('Error agregando sesión de meditación:', error);
@@ -227,7 +264,8 @@ export class StateService {
         try {
             const updatedSessions = this.sessions().filter(s => s.id !== sessionId);
             this.sessions.set(updatedSessions);
-            await this.storageService.set(this.STORAGE_KEYS.SESSIONS, updatedSessions);
+
+            await this.storageService.set(this.getStorageKey('sessions'), updatedSessions);
         } catch (error) {
             console.error('Error eliminando sesión:', error);
             throw error;
