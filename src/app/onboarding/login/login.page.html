@@ -11,7 +11,11 @@
     <!-- Botón de Google -->
     <button class="boton-social" (click)="loginWithGoogle()" [disabled]="isLoading()">
       <ion-icon aria-hidden="true" name="logo-google"></ion-icon>
-      <span>{{ isLoading() ? 'Cargando...' : 'Continuar con Google' }}</span>
+      @if (isLoading()) {
+      <ion-spinner name="circular"></ion-spinner>
+      } @else {
+      <span>Continuar con Google</span>
+      }
     </button>
 
     <!-- Separador -->

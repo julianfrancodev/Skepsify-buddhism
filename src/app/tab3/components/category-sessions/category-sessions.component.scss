@@ -2,9 +2,12 @@
 .section-label {
   font-family: sans-serif;
   font-size: 19px;
-  font-weight: 800; /* Extra Bold */
-  color: #5C504A;   /* Café Oscuro */
-  margin-bottom: 15px; /* Espacio antes de las tarjetas */
+  font-weight: 800;
+  /* Extra Bold */
+  color: #5C504A;
+  /* Café Oscuro */
+  margin-bottom: 15px;
+  /* Espacio antes de las tarjetas */
 
   /* Flexbox por si quieres poner un botón "Ver todo" a la derecha después */
   display: flex;
@@ -17,8 +20,10 @@
 /* --- Contenedor de la Cuadrícula (Flexbox) --- */
 .categories-flex-container {
   display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas bajen a la siguiente línea */
-  gap: 15px;       /* Espacio entre columnas y filas (Moderno) */
+  flex-wrap: wrap;
+  /* Permite que las tarjetas bajen a la siguiente línea */
+  gap: 15px;
+  /* Espacio entre columnas y filas (Moderno) */
 
   /* Si el navegador es muy viejo y no soporta gap, usar márgenes negativos (opcional) */
   margin-bottom: 30px;
@@ -31,10 +36,14 @@
   /* Cálculo para 2 columnas exactas restando el hueco (gap) */
   /* 50% del ancho menos la mitad del gap (7.5px) */
   width: calc(50% - 7.5px);
-  background-color: #FAFAFA; /* Gris muy claro, casi blanco */
-  border-radius: 20px;       /* Bordes redondeados */
-  padding: 20px;             /* Relleno interno */
-  box-sizing: border-box;    /* Asegura que el padding no rompa el ancho */
+  background-color: #FAFAFA;
+  /* Gris muy claro, casi blanco */
+  border-radius: 20px;
+  /* Bordes redondeados */
+  padding: 20px;
+  /* Relleno interno */
+  box-sizing: border-box;
+  /* Asegura que el padding no rompa el ancho */
 
   /* Sombra suave Premium */
   box-shadow: 0px 8px 20px rgba(92, 80, 74, 0.06);
@@ -42,7 +51,8 @@
   /* Organización interna */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea los elementos al principio */
+  justify-content: flex-start;
+  /* Alinea los elementos al principio */
 
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -56,19 +66,20 @@
 
 /* --- Elementos dentro de la Tarjeta --- */
 .cat-emoji {
-  font-size: 32px; /* Emoji grande */
-  margin-bottom: 12px; /* Espacio entre el emoji y el texto */
+  font-size: 32px;
+  /* Emoji grande */
+  margin-bottom: 12px;
+  /* Espacio entre el emoji y el texto */
 }
 
-.cat-info {
-
-}
 
 .cat-title {
   font-family: sans-serif;
   font-size: 16px;
-  font-weight: 700; /* Bold */
-  color: #5C504A;   /* Café Oscuro */
+  font-weight: 700;
+  /* Bold */
+  color: #5C504A;
+  /* Café Oscuro */
   margin: 0 0 4px 0;
   line-height: 1.2;
 }
@@ -77,5 +88,14 @@
   font-family: sans-serif;
   font-size: 12px;
   font-weight: 500;
-  color: #B8B0AB;   /* Gris Niebla */
+  color: #B8B0AB;
+  /* Gris Niebla */
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }

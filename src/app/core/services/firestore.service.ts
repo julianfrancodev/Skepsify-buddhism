@@ -19,7 +19,8 @@ import {
     MeditationPackage,
     ProgramSession,
     ProgramProgress,
-    MeditationSession
+    MeditationSession,
+    CategoryWithCount
 } from '../models/models';
 
 @Injectable({
@@ -100,6 +101,77 @@ export class FirestoreService {
             console.error('Error obteniendo programas por categoría:', error);
             return [];
         }
+    }
+
+    /**
+     * Obtiene categorías aleatorias con conteo de sesiones
+     */
+    async getRandomCategories(count: number = 4): Promise<CategoryWithCount[]> {
+        try {
+            const allPrograms = await this.getPrograms();
+
+            // Agrupar por categoría y contar sesiones
+            const categoryMap = new Map<string, CategoryWithCount>();
+
+            for (const program of allPrograms) {
+                const category = program.category;
+                if (!categoryMap.has(category)) {
+                    categoryMap.set(category, {
+                        id: category,
+                        name: this.getCategoryName(category),
+                        emoji: this.getCategoryEmoji(category),
+                        sessionCount: 0
+                    });
+                }
+
+                // Contar sesiones del programa
+                const packages = await this.getPackagesByProgram(program.id);
+                for (const pkg of packages) {
+                    const sessions = await this.getSessionsByPackage(program.id, pkg.id);
+                    const currentCount = categoryMap.get(category)!.sessionCount;
+                    categoryMap.set(category, {
+                        ...categoryMap.get(category)!,
+                        sessionCount: currentCount + sessions.length
+                    });
+                }
+            }
+
+            // Convertir a array y mezclar aleatoriamente
+            const categories = Array.from(categoryMap.values());
+            const shuffled = categories.sort(() => Math.random() - 0.5);
+
+            // Retornar las primeras 'count' categorías
+            return shuffled.slice(0, count);
+        } catch (error) {
+            console.error('Error obteniendo categorías aleatorias:', error);
+            return [];
+        }
+    }
+
+    /**
+     * Helper: Obtiene el nombre de la categoría
+     */
+    private getCategoryName(category: string): string {
+        const names: Record<string, string> = {
+            'compassion': 'Compasión',
+            'mindfulness': 'Atención Plena',
+            'wisdom': 'Sabiduría',
+            'concentration': 'Concentración'
+        };
+        return names[category] || category;
+    }
+
+    /**
+     * Helper: Obtiene el emoji de la categoría
+     */
+    private getCategoryEmoji(category: string): string {
+        const emojis: Record<string, string> = {
+            'compassion': '❤️',
+            'mindfulness': '😌',
+            'wisdom': '✨',
+            'concentration': '🧘'
+        };
+        return emojis[category] || '📿';
     }
 
     /**

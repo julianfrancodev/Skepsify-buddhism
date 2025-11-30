@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonIcon, IonSpinner } from '@ionic/angular/standalone';
 import { ButtonComponent } from 'src/app/components/button/button.component';
 import { addIcons } from 'ionicons';
 import { logoGoogle, personCircleOutline } from 'ionicons/icons';
@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonContent, CommonModule, FormsModule, ButtonComponent]
+  imports: [IonSpinner, IonIcon, IonContent, CommonModule, FormsModule, ButtonComponent]
 })
 export class LoginPage {
 

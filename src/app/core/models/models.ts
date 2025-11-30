@@ -136,6 +136,7 @@ export interface MeditationPackage {
     sessionCount: number;
     totalDuration: number;
     coverImageUrl?: string;
+    isPremium: boolean;
 }
 
 /**
@@ -169,4 +170,14 @@ export interface ProgramProgress {
     currentPackageId?: string;
     currentSessionId?: string;
     totalMinutesCompleted: number;
+}
+
+/**
+ * Categoría con conteo de sesiones
+ */
+export interface CategoryWithCount {
+    id: string;
+    name: string;
+    emoji: string;
+    sessionCount: number;
 }

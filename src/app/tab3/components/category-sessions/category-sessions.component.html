@@ -2,36 +2,20 @@
 
 <div class="categories-flex-container">
 
+  @if (loading()) {
+  <div class="loading-state">
+    <ion-spinner name="circular"></ion-spinner>
+  </div>
+  } @else {
+  @for (category of categories(); track category.id) {
   <div class="category-card">
-    <div class="cat-emoji">😌</div>
+    <div class="cat-emoji">{{ category.emoji }}</div>
     <div class="cat-info">
-      <h4 class="cat-title">Calma Mental</h4>
-      <span class="cat-count">5 sesiones</span>
+      <h4 class="cat-title">{{ category.name }}</h4>
+      <span class="cat-count">{{ category.sessionCount }} sesiones</span>
     </div>
   </div>
-
-  <div class="category-card">
-    <div class="cat-emoji">❤️</div>
-    <div class="cat-info">
-      <h4 class="cat-title">Tonglen</h4>
-      <span class="cat-count">3 sesiones</span>
-    </div>
-  </div>
-
-  <div class="category-card">
-    <div class="cat-emoji">✨</div>
-    <div class="cat-info">
-      <h4 class="cat-title">Purificación</h4>
-      <span class="cat-count">4 sesiones</span>
-    </div>
-  </div>
-
-  <div class="category-card">
-    <div class="cat-emoji">💀</div>
-    <div class="cat-info">
-      <h4 class="cat-title">Impermanencia</h4>
-      <span class="cat-count">2 sesiones</span>
-    </div>
-  </div>
+  }
+  }
 
 </div>

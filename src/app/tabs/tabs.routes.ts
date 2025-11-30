@@ -39,6 +39,11 @@ export const routes: Routes = [
           import('../tab3/pages/page-basic-search/page-basic-search.component').then((m) => m.PageBasicSearchComponent),
       },
       {
+        path: 'tab3/all-complete-courses',
+        loadComponent: () =>
+          import('../tab3/pages/page-all-complete-courses/page-all-complete-courses.component').then((m) => m.PageAllCompleteCoursesComponent),
+      },
+      {
         path: 'tab4',
         loadComponent: () =>
           import('../tab4/tab4.page').then((m) => m.Tab4Page),

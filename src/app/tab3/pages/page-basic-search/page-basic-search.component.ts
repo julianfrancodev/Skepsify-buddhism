@@ -14,7 +14,7 @@ import {
   IonCardContent,
   IonChip,
   IonIcon,
-  IonButton
+  IonButton, IonSpinner
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { playCircleOutline, timeOutline, personOutline, folderOutline } from 'ionicons/icons';
@@ -35,7 +35,7 @@ interface SearchResult {
   templateUrl: './page-basic-search.component.html',
   styleUrls: ['./page-basic-search.component.scss'],
   standalone: true,
-  imports: [
+  imports: [IonSpinner,
     CommonModule,
     FormsModule,
     IonContent,

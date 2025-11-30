@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Header -->
+  <div class="courses-header-nav">
+    <ion-icon name="arrow-back-circle-outline" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">Todos los Cursos</h1>
+    <div class="spacer"></div>
+  </div>
+
+
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="loading-container">
+    <ion-spinner name="circular"></ion-spinner>
+    <p>Cargando cursos...</p>
+  </div>
+  } @else {
+
+  <!-- Header con total -->
+  <div class="page-header">
+    <h1>Explora Todos los Cursos</h1>
+    <p class="subtitle">{{ totalPackages() }} paquetes disponibles en {{ programsWithPackages().length }} programas</p>
+  </div>
+
+  <!-- Programas con sus paquetes -->
+  @for (item of programsWithPackages(); track item.program.id) {
+  <div class="program-section">
+
+    <!-- Título del Programa -->
+    <div class="program-header">
+      <h2 class="program-title">{{ item.program.title }}</h2>
+      <p class="program-description">{{ item.program.description }}</p>
+      <div class="program-meta">
+        <ion-chip class="category-chip">
+          {{ getCategoryName(item.program.category) }}
+        </ion-chip>
+        <ion-chip class="level-chip" [attr.data-level]="item.program.level">
+          {{ getLevelName(item.program.level) }}
+        </ion-chip>
+      </div>
+    </div>
+
+    <!-- Grid de Paquetes -->
+    <div class="packages-grid">
+      @for (package of item.packages; track package.id) {
+      <ion-card class="package-card">
+
+        <!-- Imagen de portada -->
+        @if (package.coverImageUrl) {
+        <div class="card-image" [style.background-image]="'url(' + package.coverImageUrl + ')'"></div>
+        } @else {
+        <div class="card-image placeholder">
+          <ion-icon name="folder-outline"></ion-icon>
+        </div>
+        }
+
+        <ion-card-header>
+          <ion-card-subtitle>{{ item.program.title }}</ion-card-subtitle>
+          <ion-card-title>{{ package.title }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p class="package-description">{{ package.description }}</p>
+
+          <div class="package-info">
+            <div class="info-item">
+              <ion-icon name="play-circle-outline"></ion-icon>
+              <span>{{ package.sessionCount }} sesiones</span>
+            </div>
+            <div class="info-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ package.totalDuration }} min</span>
+            </div>
+          </div>
+
+          @if (package.isPremium) {
+          <ion-chip class="premium-chip">Premium</ion-chip>
+          }
+        </ion-card-content>
+
+        <ion-button expand="block" fill="clear" class="view-button">
+          Ver Paquete
+          <ion-icon slot="end" name="play-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-card>
+      }
+    </div>
+
+  </div>
+  }
+
+  <!-- Empty State -->
+  @if (programsWithPackages().length === 0) {
+  <div class="empty-state">
+    <ion-icon name="folder-outline"></ion-icon>
+    <h3>No hay cursos disponibles</h3>
+    <p>Los cursos aparecerán aquí cuando estén disponibles</p>
+  </div>
+  }
+
+  }
+
+</ion-content>
