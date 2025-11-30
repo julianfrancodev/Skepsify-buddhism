@@ -1,0 +1,89 @@
+{
+    "COMMON": {
+        "LOADING": "Carregando...",
+        "SAVE": "Salvar",
+        "CANCEL": "Cancelar",
+        "DELETE": "Excluir",
+        "EDIT": "Editar",
+        "SEARCH": "Buscar",
+        "NO_RESULTS": "Nenhum resultado encontrado",
+        "CLOSE": "Fechar",
+        "CONFIRM": "Confirmar",
+        "BACK": "Voltar"
+    },
+    "TABS": {
+        "HOME": "Início",
+        "PRACTICES": "Práticas",
+        "MEDITATE": "Meditar",
+        "PROFILE": "Minha Biblioteca"
+    },
+    "TAB4": {
+        "GENERAL": "Geral",
+        "ACCOUNT": "Conta",
+        "REMINDERS": "Lembretes",
+        "HISTORY": "Histórico"
+    },
+    "AUTH": {
+        "LOGIN": "Entrar",
+        "REGISTER": "Cadastrar",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Senha",
+        "LOGOUT": "Sair",
+        "WELCOME": "Bem-vindo",
+        "GOOGLE_LOGIN": "Continuar com Google"
+    },
+    "MEDITATION": {
+        "PROGRAMS": "Programas",
+        "SESSIONS": "Sessões",
+        "PACKAGES": "Pacotes",
+        "DURATION": "Duração",
+        "INSTRUCTOR": "Instrutor",
+        "PLAY": "Reproduzir",
+        "RECOMMENDED": "Sessões Recomendadas",
+        "TOTAL_SESSIONS": "sessões",
+        "MINUTES": "min",
+        "PROGRAM": "Programa",
+        "PACKAGE": "Pacote",
+        "SESSION": "Sessão"
+    },
+    "SEARCH": {
+        "PLACEHOLDER": "Buscar programas, pacotes ou sessões...",
+        "ALL": "Todos",
+        "PROGRAMS": "Programas",
+        "PACKAGES": "Pacotes",
+        "SESSIONS": "Sessões",
+        "RESULTS": "Resultados",
+        "SEARCH_MEDITATION": "Buscar meditação, curso..."
+    },
+    "CATEGORIES": {
+        "COMPASSION": "Compaixão",
+        "MINDFULNESS": "Atenção Plena",
+        "WISDOM": "Sabedoria",
+        "CONCENTRATION": "Concentração"
+    },
+    "LEVELS": {
+        "BEGINNER": "Iniciante",
+        "INTERMEDIATE": "Intermediário",
+        "ADVANCED": "Avançado",
+        "ALL": "Todos"
+    },
+    "PROFILE": {
+        "REFUGE_NAME": "Nome de Refúgio",
+        "REFUGE_MEANING": "Significado",
+        "EDIT_REFUGE": "Editar Nome de Refúgio",
+        "NO_NAME": "Sem nome"
+    },
+    "TIMER": {
+        "FREE_TIMER": "Temporizador Livre",
+        "START": "Iniciar",
+        "PAUSE": "Pausar",
+        "RESUME": "Retomar",
+        "FINISH": "Finalizar"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "Idioma",
+        "SPANISH": "Español",
+        "ENGLISH": "English",
+        "PORTUGUESE": "Português"
+    }
+}

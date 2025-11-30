@@ -9,6 +9,8 @@ export interface User {
     id: string;
     name: string;
     refugeDate?: Date; // Fecha de toma de refugio
+    refugeName?: string; // Nombre de refugio (ej: "Karma Dorje")
+    refugeMeaning?: string; // Significado del nombre (ej: "Actividad Indestructible")
     createdAt: Date;
 }
 

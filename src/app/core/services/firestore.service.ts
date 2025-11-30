@@ -26,7 +26,11 @@ import {
     providedIn: 'root'
 })
 export class FirestoreService {
-    private firestore = inject(Firestore);
+    private firestore: Firestore;
+
+    constructor(firestore: Firestore) {
+        this.firestore = firestore;
+    }
 
     // ========================================
     // PROGRAMAS

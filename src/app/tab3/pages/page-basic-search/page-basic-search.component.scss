@@ -1,0 +1,277 @@
+@use 'sass:color';
+
+/* --- Variables (Paleta Calma Terrenal) --- */
+$color-white: #FFFFFF;
+$color-text-dark: #5C504A; // Café Oscuro
+$color-text-light: #B8B0AB; // Gris Niebla
+$color-accent: #D79A8B; // Terracota Suave
+$color-gold: #E0C99A; // Oro Pálido
+$color-bg: #F5F3F0; // Fondo Suave
+
+/* --- Contenedor Principal --- */
+ion-content {
+    --background: $color-bg;
+}
+
+/* --- Header de Búsqueda (Barra + Filtros) --- */
+.search-header {
+    background-color: $color-white;
+    padding: 16px 16px 0 16px;
+    /* Sombra suave para separar del contenido */
+    box-shadow: 0px 2px 8px rgba($color-text-dark, 0.06);
+
+    /* Barra de búsqueda */
+    ion-searchbar {
+        --background: $color-bg;
+        --border-radius: 12px;
+        --box-shadow: none;
+        --color: $color-text-dark;
+        --placeholder-color: $color-text-light;
+        --icon-color: $color-accent;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+
+    /* Segmento de filtros */
+    ion-segment {
+        --background: transparent;
+        margin-bottom: 12px;
+
+        ion-segment-button {
+            --color: $color-text-light;
+            --color-checked: $color-accent;
+            --indicator-color: $color-accent;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: none;
+            min-height: 32px;
+        }
+    }
+}
+
+/* --- Título de Sección --- */
+.section-title {
+    padding: 20px 20px 12px 20px;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 800;
+        color: $color-text-dark;
+        margin: 0;
+    }
+}
+
+/* --- Estado de Carga --- */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+
+    p {
+        color: $color-text-light;
+        font-size: 16px;
+    }
+}
+
+/* --- Sin Resultados --- */
+.no-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+
+    p {
+        color: $color-text-light;
+        font-size: 16px;
+    }
+}
+
+/* --- Contenedor de Resultados --- */
+.results-container {
+    padding: 0 16px 20px 16px;
+}
+
+/* --- Grid de Resultados --- */
+.results-grid {
+    display: grid;
+    gap: 16px;
+}
+
+/* --- Tarjetas de Resultados --- */
+.result-card {
+    background-color: $color-white;
+    border-radius: 16px;
+    /* Sombra suave para que flote */
+    box-shadow: 0px 4px 12px rgba($color-text-dark, 0.08);
+    margin: 0;
+    overflow: hidden;
+    /* Transición suave para el efecto de toque */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+/* --- Badge de Tipo (Programa/Paquete/Sesión) --- */
+.card-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+
+    ion-icon {
+        font-size: 14px;
+    }
+
+    /* Badge de Programa */
+    &.program-badge {
+        background-color: rgba($color-gold, 0.2);
+        color: color.adjust($color-gold, $lightness: -20%);
+    }
+
+    /* Badge de Paquete */
+    &.package-badge {
+        background-color: rgba($color-accent, 0.2);
+        color: color.adjust($color-accent, $lightness: -15%);
+    }
+
+    /* Badge de Sesión */
+    &.session-badge {
+        background-color: rgba(#8BC9D7, 0.2);
+        color: color.adjust(#8BC9D7, $lightness: -25%);
+    }
+}
+
+/* --- Header de la Tarjeta --- */
+ion-card-header {
+    padding: 16px;
+}
+
+/* --- Título de la Tarjeta --- */
+ion-card-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: $color-text-dark;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+/* --- Subtítulo de la Tarjeta --- */
+ion-card-subtitle {
+    font-size: 13px;
+    color: $color-text-light;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    ion-icon {
+        font-size: 14px;
+    }
+}
+
+/* --- Contenido de la Tarjeta --- */
+ion-card-content {
+    padding: 0 16px 16px 16px;
+}
+
+/* --- Descripción --- */
+.description {
+    font-size: 14px;
+    color: $color-text-dark;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    opacity: 0.9;
+    /* Limitar a 2 líneas */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- Meta Información --- */
+.meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* --- Chips (Categoría, Nivel, Tags) --- */
+ion-chip {
+    margin: 0;
+    height: 26px;
+    font-size: 11px;
+    font-weight: 600;
+
+    /* Chip de Categoría */
+    &.category-chip {
+        --background: rgba($color-gold, 0.15);
+        --color: color.adjust($color-gold, $lightness: -25%);
+    }
+
+    /* Chip de Nivel */
+    &.level-chip {
+        --background: rgba($color-accent, 0.15);
+        --color: color.adjust($color-accent, $lightness: -20%);
+    }
+
+    /* Chip de Tag */
+    &.tag-chip {
+        --background: rgba($color-text-light, 0.15);
+        --color: $color-text-dark;
+    }
+}
+
+/* --- Contenedor de Tags --- */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* --- Estadísticas (Duración, Sesiones, etc) --- */
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: $color-text-light;
+    font-weight: 600;
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        ion-icon {
+            font-size: 16px;
+            color: $color-accent;
+        }
+    }
+}
+
+/* --- Botón de Reproducir --- */
+.play-button {
+    --background: $color-accent;
+    --background-activated: color.adjust($color-accent, $lightness: -10%);
+    --border-radius: 12px;
+    --box-shadow: 0px 4px 12px rgba($color-accent, 0.3);
+    height: 44px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 12px;
+
+    ion-icon {
+        font-size: 20px;
+    }
+}

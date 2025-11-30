@@ -34,6 +34,11 @@ export const routes: Routes = [
           import('../tab3/pages/page-basic-timer/page-basic-timer.component').then((m) => m.PageBasicTimerComponent),
       },
       {
+        path: 'tab3/basic-search',
+        loadComponent: () =>
+          import('../tab3/pages/page-basic-search/page-basic-search.component').then((m) => m.PageBasicSearchComponent),
+      },
+      {
         path: 'tab4',
         loadComponent: () =>
           import('../tab4/tab4.page').then((m) => m.Tab4Page),

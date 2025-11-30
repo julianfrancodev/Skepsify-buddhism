@@ -6,6 +6,8 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
 import { RefugeDetailsComponent } from './components/refuge-details/refuge-details.component';
 import { StatsPractionerComponent } from './components/stats-practioner/stats-practioner.component';
 import { SectionsInfoUserComponent } from './components/sections-info-user/sections-info-user.component';
+import { LanguageSelectorComponent } from '../shared/components/language-selector/language-selector.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../core/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -14,7 +16,17 @@ import { Router } from '@angular/router';
   templateUrl: './tab4.page.html',
   styleUrls: ['./tab4.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, ProfilePictureComponent, RefugeDetailsComponent, StatsPractionerComponent, SectionsInfoUserComponent]
+  imports: [
+    IonContent,
+    CommonModule,
+    FormsModule,
+    ProfilePictureComponent,
+    RefugeDetailsComponent,
+    StatsPractionerComponent,
+    SectionsInfoUserComponent,
+    LanguageSelectorComponent,
+    TranslateModule
+  ]
 })
 export class Tab4Page implements OnInit {
 

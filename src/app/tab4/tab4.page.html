@@ -3,16 +3,23 @@
   <app-profile-picture></app-profile-picture>
   <app-refuge-details></app-refuge-details>
   <app-stats-practioner></app-stats-practioner>
-  <div class="menu-section-title">General</div>
 
-  <app-sections-info-user iconName="time-outline" title="Recordatorios"></app-sections-info-user>
-  <app-sections-info-user iconName="calendar-outline" title="Historial"></app-sections-info-user>
+  <!-- Sección General con traducciones -->
+  <div class="menu-section-title">{{ 'TAB4.GENERAL' | translate }}</div>
+
+  <!-- Selector de idioma -->
+  <app-language-selector></app-language-selector>
+
+  <app-sections-info-user iconName="time-outline" translationKey="TAB4.REMINDERS"></app-sections-info-user>
+  <app-sections-info-user iconName="calendar-outline" translationKey="TAB4.HISTORY"></app-sections-info-user>
 
 
-  <div class="menu-section-title">Cuenta</div>
+  <!-- Sección Cuenta con traducciones -->
+  <div class="menu-section-title">{{ 'TAB4.ACCOUNT' | translate }}</div>
 
-  <app-sections-info-user iconName="library-outline" title="Recordatorios"></app-sections-info-user>
-  <app-sections-info-user (OnClickOpenScreen)="logout()" iconName="exit-outline" title="Salir"></app-sections-info-user>
+  <app-sections-info-user iconName="library-outline" translationKey="TABS.PROFILE"></app-sections-info-user>
+  <app-sections-info-user (OnClickOpenScreen)="logout()" iconName="exit-outline"
+    translationKey="AUTH.LOGOUT"></app-sections-info-user>
 
 
 </ion-content>

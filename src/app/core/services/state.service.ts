@@ -173,6 +173,20 @@ export class StateService {
     }
 
     /**
+     * Actualiza los datos del usuario existente
+     */
+    async updateUser(updatedUser: User) {
+        try {
+            this.user.set(updatedUser);
+            await this.storageService.set(this.getStorageKey('user'), updatedUser);
+            console.log('✅ Usuario actualizado correctamente');
+        } catch (error) {
+            console.error('❌ Error actualizando usuario:', error);
+            throw error;
+        }
+    }
+
+    /**
      * Agrega una nueva sesión de práctica
      */
     async addSession(practiceId: string, repetitions: number, notes?: string) {

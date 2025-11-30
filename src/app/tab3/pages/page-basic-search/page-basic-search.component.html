@@ -1,0 +1,159 @@
+<ion-content>
+  <!-- Barra de búsqueda -->
+  <div class="search-header">
+    <ion-searchbar [value]="searchQuery()" (ionInput)="onSearchChange($event)"
+      placeholder="Buscar programas, paquetes o sesiones..." animated="true" mode="ios"></ion-searchbar>
+
+    <!-- Filtros -->
+    <ion-segment [value]="currentFilter()" (ionChange)="onFilterChange($event)" mode="ios">
+      <ion-segment-button value="all">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="programs">
+        <ion-label>Programas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="packages">
+        <ion-label>Paquetes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="sessions">
+        <ion-label>Sesiones</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Título de sección -->
+  <div class="section-title">
+    <h2 *ngIf="!searchQuery()">✨ Sesiones Recomendadas</h2>
+    <h2 *ngIf="searchQuery()">
+      🔍 Resultados ({{ searchResults().length }})
+    </h2>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-container" *ngIf="isLoading()">
+    <p>Cargando...</p>
+  </div>
+
+  <!-- Resultados -->
+  <div class="results-container" *ngIf="!isLoading()">
+
+    <!-- Sin resultados -->
+    <div class="no-results" *ngIf="searchResults().length === 0 && searchQuery()">
+      <p>No se encontraron resultados para "{{ searchQuery() }}"</p>
+    </div>
+
+    <!-- Tarjetas de resultados -->
+    <div class="results-grid">
+      <ion-card *ngFor="let result of searchResults()" class="result-card">
+
+        <!-- PROGRAMA -->
+        <div *ngIf="result.type === 'program'" class="program-card">
+          <ion-card-header>
+            <div class="card-type-badge program-badge">
+              <ion-icon name="folder-outline"></ion-icon>
+              <span>Programa</span>
+            </div>
+            <ion-card-title>{{ asProgram(result.data).title }}</ion-card-title>
+            <ion-card-subtitle>
+              <ion-icon name="person-outline"></ion-icon>
+              {{ asProgram(result.data).instructor }}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="description">{{ asProgram(result.data).description }}</p>
+            <div class="meta-info">
+              <ion-chip class="category-chip">
+                {{ getCategoryName(asProgram(result.data).category) }}
+              </ion-chip>
+              <ion-chip class="level-chip">
+                {{ getLevelName(asProgram(result.data).level) }}
+              </ion-chip>
+              <div class="stats">
+                <span>
+                  <ion-icon name="play-circle-outline"></ion-icon>
+                  {{ asProgram(result.data).totalSessions }} sesiones
+                </span>
+                <span>
+                  <ion-icon name="time-outline"></ion-icon>
+                  {{ asProgram(result.data).estimatedDuration }} min
+                </span>
+              </div>
+            </div>
+          </ion-card-content>
+        </div>
+
+        <!-- PAQUETE -->
+        <div *ngIf="result.type === 'package'" class="package-card">
+          <ion-card-header>
+            <div class="card-type-badge package-badge">
+              <ion-icon name="folder-outline"></ion-icon>
+              <span>Paquete</span>
+            </div>
+            <ion-card-title>{{ asPackage(result.data).title }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ result.programTitle }}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="description">{{ asPackage(result.data).description }}</p>
+            <div class="meta-info">
+              <ion-chip class="level-chip">
+                {{ getLevelName(asPackage(result.data).level) }}
+              </ion-chip>
+              <div class="stats">
+                <span>
+                  <ion-icon name="play-circle-outline"></ion-icon>
+                  {{ asPackage(result.data).sessionCount }} sesiones
+                </span>
+                <span>
+                  <ion-icon name="time-outline"></ion-icon>
+                  {{ asPackage(result.data).totalDuration }} min
+                </span>
+              </div>
+            </div>
+          </ion-card-content>
+        </div>
+
+        <!-- SESIÓN -->
+        <div *ngIf="result.type === 'session'" class="session-card">
+          <ion-card-header>
+            <div class="card-type-badge session-badge">
+              <ion-icon name="play-circle-outline"></ion-icon>
+              <span>Sesión</span>
+            </div>
+            <ion-card-title>{{ asSession(result.data).title }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ result.programTitle }} • {{ result.packageTitle }}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="description">{{ asSession(result.data).description }}</p>
+            <div class="meta-info">
+              <div class="tags">
+                <ion-chip *ngFor="let tag of asSession(result.data).tags.slice(0, 3)" class="tag-chip">
+                  {{ tag }}
+                </ion-chip>
+              </div>
+              <div class="stats">
+                <span>
+                  <ion-icon name="time-outline"></ion-icon>
+                  {{ asSession(result.data).durationMinutes }} min
+                </span>
+                <span>
+                  <ion-icon name="person-outline"></ion-icon>
+                  {{ asSession(result.data).instructor }}
+                </span>
+              </div>
+            </div>
+            <ion-button expand="block" class="play-button">
+              <ion-icon slot="start" name="play-circle-outline"></ion-icon>
+              Reproducir
+            </ion-button>
+          </ion-card-content>
+        </div>
+
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,4 +1,4 @@
-<div class="dharma-name-card">
+<div class="dharma-name-card" (click)="openEditModal()">
 
   <div class="edit-icon-wrapper">
     <ion-icon name="pencil-outline"></ion-icon>
@@ -9,8 +9,10 @@
     <span>Nombre de Refugio</span>
   </div>
 
-  <h2 class="dharma-main-name">Karma Dorje</h2>
+  <h2 class="dharma-main-name">{{ stateService.user()?.refugeName || 'Sin nombre' }}</h2>
 
-  <p class="dharma-meaning">"Actividad Indestructible"</p>
+  <p class="dharma-meaning" *ngIf="stateService.user()?.refugeMeaning">
+    "{{ stateService.user()?.refugeMeaning }}"
+  </p>
 
 </div>

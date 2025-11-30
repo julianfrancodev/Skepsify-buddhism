@@ -1,0 +1,89 @@
+{
+    "COMMON": {
+        "LOADING": "Loading...",
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "SEARCH": "Search",
+        "NO_RESULTS": "No results found",
+        "CLOSE": "Close",
+        "CONFIRM": "Confirm",
+        "BACK": "Back"
+    },
+    "TABS": {
+        "HOME": "Home",
+        "PRACTICES": "Practices",
+        "MEDITATE": "Meditate",
+        "PROFILE": "My Library"
+    },
+    "TAB4": {
+        "GENERAL": "General",
+        "ACCOUNT": "Account",
+        "REMINDERS": "Reminders",
+        "HISTORY": "History"
+    },
+    "AUTH": {
+        "LOGIN": "Login",
+        "REGISTER": "Sign Up",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "LOGOUT": "Logout",
+        "WELCOME": "Welcome",
+        "GOOGLE_LOGIN": "Continue with Google"
+    },
+    "MEDITATION": {
+        "PROGRAMS": "Programs",
+        "SESSIONS": "Sessions",
+        "PACKAGES": "Packages",
+        "DURATION": "Duration",
+        "INSTRUCTOR": "Instructor",
+        "PLAY": "Play",
+        "RECOMMENDED": "Recommended Sessions",
+        "TOTAL_SESSIONS": "sessions",
+        "MINUTES": "min",
+        "PROGRAM": "Program",
+        "PACKAGE": "Package",
+        "SESSION": "Session"
+    },
+    "SEARCH": {
+        "PLACEHOLDER": "Search programs, packages or sessions...",
+        "ALL": "All",
+        "PROGRAMS": "Programs",
+        "PACKAGES": "Packages",
+        "SESSIONS": "Sessions",
+        "RESULTS": "Results",
+        "SEARCH_MEDITATION": "Search meditation, course..."
+    },
+    "CATEGORIES": {
+        "COMPASSION": "Compassion",
+        "MINDFULNESS": "Mindfulness",
+        "WISDOM": "Wisdom",
+        "CONCENTRATION": "Concentration"
+    },
+    "LEVELS": {
+        "BEGINNER": "Beginner",
+        "INTERMEDIATE": "Intermediate",
+        "ADVANCED": "Advanced",
+        "ALL": "All"
+    },
+    "PROFILE": {
+        "REFUGE_NAME": "Refuge Name",
+        "REFUGE_MEANING": "Meaning",
+        "EDIT_REFUGE": "Edit Refuge Name",
+        "NO_NAME": "No name"
+    },
+    "TIMER": {
+        "FREE_TIMER": "Free Timer",
+        "START": "Start",
+        "PAUSE": "Pause",
+        "RESUME": "Resume",
+        "FINISH": "Finish"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "Language",
+        "SPANISH": "Español",
+        "ENGLISH": "English",
+        "PORTUGUESE": "Português"
+    }
+}
