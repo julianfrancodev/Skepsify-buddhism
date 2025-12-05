@@ -1,0 +1,118 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Header -->
+  <div class="player-header-nav">
+    <ion-icon name="arrow-back-circle-outline" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">Reproductor</h1>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="loading-container">
+    <ion-spinner name="circular"></ion-spinner>
+    <p>Cargando sesión...</p>
+  </div>
+  }
+
+  <!-- Error State -->
+  @else if (error()) {
+  <div class="error-container">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <h3>{{ error() }}</h3>
+    <p>No se pudo cargar la sesión</p>
+    <ion-button (click)="goBack()">Volver</ion-button>
+  </div>
+  }
+
+  <!-- Player Content -->
+  @else if (session()) {
+  <div class="player-container">
+
+    <!-- Session Info Card -->
+    <div class="session-info-card">
+      @if (session()!.coverImageUrl) {
+      <div class="cover-image" [style.background-image]="'url(' + session()!.coverImageUrl + ')'"></div>
+      } @else {
+      <div class="cover-image placeholder">
+        <ion-icon name="musical-notes-outline"></ion-icon>
+      </div>
+      }
+
+      <div class="session-details">
+        <h1 class="session-title">{{ session()!.title }}</h1>
+        <p class="session-description">{{ session()!.description }}</p>
+
+        <div class="session-meta">
+          <div class="meta-item">
+            <ion-icon name="person-outline"></ion-icon>
+            <span>{{ session()!.instructor }}</span>
+          </div>
+          <div class="meta-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ session()!.durationMinutes }} min</span>
+          </div>
+          @if (session()!.isPremium) {
+          <ion-chip class="premium-chip">Premium</ion-chip>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player-card">
+
+      <!-- Hidden Audio Element -->
+      <audio #audioPlayer [src]="session()!.audioUrl" (timeupdate)="onTimeUpdate($event)"
+        (loadedmetadata)="onLoadedMetadata($event)" (ended)="onEnded()"></audio>
+
+      <!-- Progress Bar -->
+      <div class="progress-container" (click)="seek($event)">
+        <ion-progress-bar [value]="progress() / 100"></ion-progress-bar>
+        <div class="time-labels">
+          <span class="current-time">{{ formatTime(currentTime()) }}</span>
+          <span class="total-time">{{ formatTime(duration()) }}</span>
+        </div>
+      </div>
+
+      <!-- Player Controls -->
+      <div class="player-controls">
+
+        <!-- Mute Button -->
+        <ion-button fill="clear" (click)="toggleMute()" class="control-btn">
+          @if (isMuted()) {
+          <ion-icon name="volume-mute-outline"></ion-icon>
+          } @else {
+          <ion-icon name="volume-high-outline"></ion-icon>
+          }
+        </ion-button>
+
+        <!-- Play/Pause Button -->
+        <ion-button fill="clear" (click)="togglePlay()" class="play-btn">
+          @if (isPlaying()) {
+          <ion-icon name="pause-outline"></ion-icon>
+          } @else {
+          <ion-icon name="play-outline"></ion-icon>
+          }
+        </ion-button>
+
+      </div>
+
+    </div>
+
+    <!-- Transcript Section (if available) -->
+    @if (session()!.transcriptUrl) {
+    <div class="transcript-card">
+      <h3>Transcripción</h3>
+      <p>Disponible para descargar</p>
+      <ion-button expand="block" fill="outline" [href]="session()!.transcriptUrl" target="_blank">
+        <ion-icon slot="start" name="document-text-outline"></ion-icon>
+        Ver Transcripción
+      </ion-button>
+    </div>
+    }
+
+  </div>
+  }
+
+</ion-content>

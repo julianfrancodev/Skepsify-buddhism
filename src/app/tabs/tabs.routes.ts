@@ -14,6 +14,16 @@ export const routes: Routes = [
           import('../tab1/tab1.page').then((m) => m.Tab1Page),
       },
       {
+        path: 'sessions-details/:id',
+        loadComponent: () =>
+          import('../tab1/pages/sessions-details-page/sessions-details-page.component').then((m) => m.SessionsDetailsPageComponent),
+      },
+      {
+        path: 'sessions-player/:id',
+        loadComponent: () =>
+          import('../tab1/pages/session-player-page/session-player-page.component').then((m) => m.SessionPlayerPageComponent),
+      },
+      {
         path: 'tab2',
         loadComponent: () =>
           import('../tab2/tab2.page').then((m) => m.Tab2Page),

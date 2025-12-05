@@ -43,7 +43,7 @@
     <!-- Grid de Paquetes -->
     <div class="packages-grid">
       @for (package of item.packages; track package.id) {
-      <ion-card class="package-card">
+      <ion-card class="package-card" (click)="navigateToPackageDetails(package.id)">
 
         <!-- Imagen de portada -->
         @if (package.coverImageUrl) {

@@ -1,0 +1,276 @@
+// ========================================
+// VARIABLES DE COLOR (Calma Terrenal)
+// ========================================
+$color-primary: #D79A8B;
+$color-bg: #F5F1ED;
+$color-text-dark: #5C504A;
+$color-text-light: #B8B0AB;
+$color-card-bg: #FAFAFA;
+$color-shadow: rgba(92, 80, 74, 0.08);
+$color-white: #FFFFFF;
+
+// ========================================
+// HEADER NAVIGATION
+// ========================================
+.courses-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: $color-white;
+
+    .back-icon {
+        font-size: 24px;
+        color: $color-text-dark;
+        cursor: pointer;
+    }
+
+    .header-title {
+        font-family: sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: $color-text-dark;
+        margin: 0;
+    }
+
+    .spacer {
+        width: 24px; // Para centrar el título
+    }
+}
+
+// ========================================
+// LOADING STATE
+// ========================================
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 16px;
+
+    p {
+        color: $color-text-light;
+        font-size: 14px;
+    }
+}
+
+// ========================================
+// PAGE HEADER (Package Info)
+// ========================================
+.page-header {
+    margin: 16px 20px 20px;
+    padding: 20px;
+    background: $color-white;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(92, 80, 74, 0.08);
+
+    h1 {
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0 0 8px 0;
+        color: $color-text-dark;
+        background: linear-gradient(135deg, $color-primary 0%, lighten($color-primary, 10%) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        color: $color-text-light;
+        margin: 0 0 16px 0;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+}
+
+.package-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: $color-text-dark;
+        font-weight: 600;
+
+        ion-icon {
+            font-size: 18px;
+            color: $color-primary;
+        }
+    }
+}
+
+// ========================================
+// SESSIONS SECTION
+// ========================================
+.sessions-section {
+    margin: 16px 10px 10px;
+}
+
+// ========================================
+// SESSIONS GRID
+// ========================================
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 20px 20px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+}
+
+// ========================================
+// SESSION CARD
+// ========================================
+.session-card {
+    margin: 0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px $color-shadow;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: $color-card-bg;
+    position: relative;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.98);
+        box-shadow: 0 1px 4px $color-shadow;
+    }
+
+    .session-number {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, $color-primary 0%, lighten($color-primary, 10%) 100%);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(215, 154, 139, 0.3);
+    }
+
+    ion-card-header {
+        padding: 12px 12px 6px;
+        padding-right: 50px; // Espacio para el número
+    }
+
+    ion-card-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: $color-text-dark;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    ion-card-content {
+        padding: 6px 12px 12px;
+
+        .session-description {
+            font-size: 12px;
+            color: $color-text-light;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .session-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 6px;
+
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 11px;
+                color: $color-text-light;
+                font-weight: 500;
+
+                ion-icon {
+                    font-size: 14px;
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    .premium-chip {
+        --background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        --color: #5C504A;
+        font-size: 11px;
+        font-weight: 700;
+        height: 24px;
+        margin-top: 8px;
+    }
+
+    .play-button {
+        --color: #{$color-primary};
+        font-weight: 600;
+        font-size: 13px;
+        margin: 0;
+        height: 40px;
+
+        ion-icon {
+            font-size: 18px;
+        }
+    }
+}
+
+// ========================================
+// EMPTY STATE
+// ========================================
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+
+    ion-icon {
+        font-size: 80px;
+        color: $color-text-light;
+        opacity: 0.3;
+        margin-bottom: 16px;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: $color-text-dark;
+        margin: 0 0 8px 0;
+    }
+
+    p {
+        font-size: 14px;
+        color: $color-text-light;
+        margin: 0;
+    }
+}

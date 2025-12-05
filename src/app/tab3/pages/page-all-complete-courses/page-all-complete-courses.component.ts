@@ -106,6 +106,10 @@ export class PageAllCompleteCoursesComponent implements OnInit {
     return names[level] || level;
   }
 
+  navigateToPackageDetails(packageId: string) {
+    this.router.navigate(['/tabs/sessions-details', packageId]);
+  }
+
   goBack() {
     this.router.navigate(['/tabs/tab3']);
   }

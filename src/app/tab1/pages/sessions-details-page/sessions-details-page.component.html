@@ -1,0 +1,97 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Header -->
+  <div class="courses-header-nav">
+    <ion-icon name="arrow-back-circle-outline" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">Sesiones del Paquete</h1>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="loading-container">
+    <ion-spinner name="circular"></ion-spinner>
+    <p>Cargando sesiones...</p>
+  </div>
+  } @else if (error()) {
+
+  <!-- Error State -->
+  <div class="empty-state">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <h3>{{ error() }}</h3>
+    <p>No se pudieron cargar las sesiones</p>
+  </div>
+
+  } @else {
+
+  <!-- Package Info Header -->
+  @if (packageInfo()) {
+  <div class="page-header">
+    <h1>{{ packageInfo()!.title }}</h1>
+    <p class="subtitle">{{ packageInfo()!.description }}</p>
+    <div class="package-stats">
+      <div class="stat-item">
+        <ion-icon name="play-circle-outline"></ion-icon>
+        <span>{{ sessions().length }} sesiones</span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="time-outline"></ion-icon>
+        <span>{{ packageInfo()!.totalDuration }} min</span>
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- Sessions Grid -->
+  <div class="sessions-section">
+    @if (sessions().length === 0) {
+    <div class="empty-state">
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <h3>No hay sesiones disponibles</h3>
+      <p>Este paquete aún no tiene sesiones</p>
+    </div>
+    } @else {
+
+    <div class="sessions-grid">
+      @for (session of sessions(); track session.id) {
+      <ion-card class="session-card" (click)="playSession(session)">
+
+        <!-- Session Number Badge -->
+        <div class="session-number">{{ session.order }}</div>
+
+        <ion-card-header>
+          <ion-card-title>{{ session.title }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p class="session-description">{{ session.description }}</p>
+
+          <div class="session-info">
+            <div class="info-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ session.durationMinutes }} min</span>
+            </div>
+            <div class="info-item">
+              <ion-icon name="person-outline"></ion-icon>
+              <span>{{ session.instructor }}</span>
+            </div>
+          </div>
+
+          @if (session.isPremium) {
+          <ion-chip class="premium-chip">Premium</ion-chip>
+          }
+        </ion-card-content>
+
+        <ion-button expand="block" fill="clear" class="play-button">
+          <ion-icon slot="start" name="play-circle-outline"></ion-icon>
+          Reproducir
+        </ion-button>
+      </ion-card>
+      }
+    </div>
+    }
+  </div>
+
+  }
+
+</ion-content>
