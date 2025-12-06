@@ -345,6 +345,59 @@ export class FirestoreService {
         }
     }
 
+    /**
+     * Obtiene 2 sesiones aleatorias que cambian cada día
+     * Las sesiones son consistentes durante todo el día
+     */
+    async getDailySessions(): Promise<ProgramSession[]> {
+        try {
+            const allPrograms = await this.getPrograms();
+            const allSessions: ProgramSession[] = [];
+
+            // Recopilar todas las sesiones de todos los programas y paquetes
+            for (const program of allPrograms) {
+                const packages = await this.getPackagesByProgram(program.id);
+                for (const pkg of packages) {
+                    const sessions = await this.getSessionsByPackage(program.id, pkg.id);
+                    allSessions.push(...sessions);
+                }
+            }
+
+            if (allSessions.length === 0) {
+                return [];
+            }
+
+            // Crear una "semilla" basada en el día del año
+            const today = new Date();
+            const dayOfYear = Math.floor(
+                (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
+            );
+
+            // Mezclar sesiones usando la semilla del día
+            const shuffled = this.seededShuffle([...allSessions], dayOfYear);
+
+            // Retornar las primeras 2 sesiones
+            return shuffled.slice(0, 2);
+        } catch (error) {
+            console.error('Error obteniendo sesiones diarias:', error);
+            return [];
+        }
+    }
+
+    /**
+     * Obtiene 1 sesión aleatoria que cambia cada día (versión optimizada)
+     * Útil para mostrar una "tendencia del día" o sesión destacada
+     */
+    async getDailySession(): Promise<ProgramSession | null> {
+        try {
+            const sessions = await this.getDailySessions();
+            return sessions.length > 0 ? sessions[0] : null;
+        } catch (error) {
+            console.error('Error obteniendo sesión diaria:', error);
+            return null;
+        }
+    }
+
     // ========================================
     // PROGRESO DEL USUARIO
     // ========================================

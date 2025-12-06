@@ -1,16 +1,51 @@
+@if (isLoading) {
+<!-- Loading state -->
 <div class="resume-session-card">
+  <div class="resume-play-icon">
+    <ion-icon name="play-outline"></ion-icon>
+  </div>
+
+  <div class="resume-info">
+    <span class="resume-label">Tendencia de hoy</span>
+    <span class="resume-title">Cargando...</span>
+  </div>
+
+  <div class="resume-time-badge">
+    -- min
+  </div>
+</div>
+} @else if (trendingSession) {
+<!-- Trending session -->
+<div class="resume-session-card" (click)="goToSession()" style="cursor: pointer;">
 
   <div class="resume-play-icon">
     <ion-icon name="play-outline"></ion-icon>
   </div>
 
   <div class="resume-info">
-    <span class="resume-label">Continuar escuchando</span>
-    <span class="resume-title">Refugio y Bodhicitta</span>
+    <span class="resume-label">Tendencia de hoy</span>
+    <span class="resume-title">{{ trendingSession.title }}</span>
   </div>
 
   <div class="resume-time-badge">
-    12 min
+    {{ trendingSession.durationMinutes }} min
   </div>
 
 </div>
+} @else {
+<!-- Empty state -->
+<div class="resume-session-card">
+  <div class="resume-play-icon">
+    <ion-icon name="play-outline"></ion-icon>
+  </div>
+
+  <div class="resume-info">
+    <span class="resume-label">Tendencia de hoy</span>
+    <span class="resume-title">No disponible</span>
+  </div>
+
+  <div class="resume-time-badge">
+    -- min
+  </div>
+</div>
+}

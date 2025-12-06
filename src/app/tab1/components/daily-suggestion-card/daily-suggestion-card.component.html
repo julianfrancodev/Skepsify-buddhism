@@ -4,21 +4,41 @@
   <button class="section-action" (click)="goToShowAllCourses()">Ver todo</button>
 </div>
 
+@if (isLoading) {
+<!-- Loading state -->
 <div class="daily-suggestion-card">
+  <div class="suggestion-visual">
+    <span class="suggestion-icon">⏳</span>
+  </div>
+  <div class="suggestion-content">
+    <div class="suggestion-header">
+      <span class="suggestion-tag">Cargando...</span>
+    </div>
+    <h4 class="suggestion-title">Obteniendo sesiones del día</h4>
+    <div class="suggestion-meta">
+      <span>Por favor espera</span>
+    </div>
+  </div>
+</div>
+}
+
+<!-- Daily sessions -->
+@for (session of dailySessions; track session.id; let i = $index) {
+<div class="daily-suggestion-card" (click)="goToSession(session)" style="cursor: pointer;">
 
   <div class="suggestion-visual">
-    <span class="suggestion-icon">🪷</span>
+    <span class="suggestion-icon">{{ i === 0 ? '🪷' : '🙏🏻' }}</span>
   </div>
 
   <div class="suggestion-content">
     <div class="suggestion-header">
-      <span class="suggestion-tag">Sugerencia</span>
+      <span class="suggestion-tag">{{ i === 0 ? 'Sugerencia del día' : 'Meditación del día' }}</span>
     </div>
-    <h4 class="suggestion-title">Calma Mental</h4>
+    <h4 class="suggestion-title">{{ session.title }}</h4>
     <div class="suggestion-meta">
-      <span>10 min</span>
+      <span>{{ session.durationMinutes }} min</span>
       <span class="meta-dot">•</span>
-      <span>Guiada</span>
+      <span>{{ session.isPremium ? 'Premium' : 'Libre' }}</span>
     </div>
   </div>
 
@@ -27,27 +47,22 @@
   </div>
 
 </div>
+}
 
+@if (!isLoading && dailySessions.length === 0) {
+<!-- Empty state -->
 <div class="daily-suggestion-card">
-
   <div class="suggestion-visual">
-    <span class="suggestion-icon">🙏🏻</span>
+    <span class="suggestion-icon">🔍</span>
   </div>
-
   <div class="suggestion-content">
     <div class="suggestion-header">
-      <span class="suggestion-tag">Meditacion del dia</span>
+      <span class="suggestion-tag">Sin contenido</span>
     </div>
-    <h4 class="suggestion-title">Vjarassatva</h4>
+    <h4 class="suggestion-title">No hay sesiones disponibles</h4>
     <div class="suggestion-meta">
-      <span>5 min</span>
-      <span class="meta-dot">•</span>
-      <span>Libre</span>
+      <span>Intenta más tarde</span>
     </div>
   </div>
-
-  <div class="suggestion-arrow">
-    <ion-icon name="chevron-forward-outline"></ion-icon>
-  </div>
-
 </div>
+}
