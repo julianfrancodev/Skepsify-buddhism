@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
   styleUrls: ['./dashboard-header.component.scss'],
 })
-export class DashboardHeaderComponent  implements OnInit {
+export class DashboardHeaderComponent implements OnInit {
+
+  private authService = inject(AuthService);
+
+  // Computed signal que se actualiza automáticamente cuando cambia el usuario
+  currentUser = computed(() => this.authService.currentUser()?.displayName || '');
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
