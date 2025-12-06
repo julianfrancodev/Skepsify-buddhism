@@ -10,7 +10,6 @@ export class DashboardHeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
 
-  // Computed signal que se actualiza automáticamente cuando cambia el usuario
   currentUser = computed(() => this.authService.currentUser()?.displayName || '');
 
   constructor() { }

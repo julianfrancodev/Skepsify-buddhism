@@ -10,14 +10,12 @@
   <!-- Selector de idioma -->
   <app-language-selector></app-language-selector>
 
-  <app-sections-info-user iconName="time-outline" translationKey="TAB4.REMINDERS"></app-sections-info-user>
-  <app-sections-info-user iconName="calendar-outline" translationKey="TAB4.HISTORY"></app-sections-info-user>
+  <app-sections-info-user iconName="library-outline" translationKey="TABS.PROFILE"></app-sections-info-user>
 
 
   <!-- Sección Cuenta con traducciones -->
   <div class="menu-section-title">{{ 'TAB4.ACCOUNT' | translate }}</div>
 
-  <app-sections-info-user iconName="library-outline" translationKey="TABS.PROFILE"></app-sections-info-user>
   <app-sections-info-user (OnClickOpenScreen)="logout()" iconName="exit-outline"
     translationKey="AUTH.LOGOUT"></app-sections-info-user>
 
