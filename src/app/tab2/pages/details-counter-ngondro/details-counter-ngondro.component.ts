@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { IonIcon, IonContent, ModalController } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
@@ -40,6 +41,7 @@ export class DetailsCounterNgondroComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private stateService: StateService,
     private modalController: ModalController
   ) {
@@ -52,7 +54,7 @@ export class DetailsCounterNgondroComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/tabs/tab2']);
+    this.location.back();
   }
 
   /**

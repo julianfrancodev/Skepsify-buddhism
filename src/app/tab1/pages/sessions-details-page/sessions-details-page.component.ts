@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import {
   IonContent,
   IonIcon,
@@ -35,6 +36,7 @@ export class SessionsDetailsPageComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private location = inject(Location);
   private firestoreService = inject(FirestoreService);
 
   packageId = signal<string>('');
@@ -119,7 +121,7 @@ export class SessionsDetailsPageComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/tabs/tab3/all-complete-courses']);
+    this.location.back();
   }
 
 }

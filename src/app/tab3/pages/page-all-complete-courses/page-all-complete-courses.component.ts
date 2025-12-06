@@ -15,6 +15,7 @@ import {
 import { addIcons } from 'ionicons';
 import { folderOutline, timeOutline, playCircleOutline, arrowBackCircleOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { FirestoreService } from '../../../core/services/firestore.service';
 import { Program, MeditationPackage } from '../../../core/models/models';
 
@@ -46,6 +47,7 @@ export class PageAllCompleteCoursesComponent implements OnInit {
 
   private firestoreService = inject(FirestoreService);
   private router = inject(Router);
+  private location = inject(Location);
 
   programsWithPackages = signal<ProgramWithPackages[]>([]);
   loading = signal<boolean>(true);
@@ -111,7 +113,7 @@ export class PageAllCompleteCoursesComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/tabs/tab3']);
+    this.location.back();
   }
 
 }

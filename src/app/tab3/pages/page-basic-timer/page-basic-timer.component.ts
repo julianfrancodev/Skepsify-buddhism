@@ -4,6 +4,7 @@ import { IonContent, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { playOutline, pauseOutline, refreshOutline, arrowBackCircleOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
@@ -51,6 +52,7 @@ export class PageBasicTimerComponent implements OnDestroy {
 
   constructor(
     private router: Router,
+    private location: Location,
     private stateService: StateService
   ) {
     addIcons({ playOutline, pauseOutline, refreshOutline, arrowBackCircleOutline });
@@ -171,7 +173,7 @@ export class PageBasicTimerComponent implements OnDestroy {
    * Navega de regreso
    */
   goBack() {
-    this.router.navigate(['/tabs/tab3']);
+    this.location.back();
   }
 
 }
