@@ -71,3 +71,7 @@ Thumbs.db
 /android
 /environments
 /scripts
+yarn.lock
+package-lock.json
+.vscode
+.idea

@@ -10,7 +10,7 @@
   <!-- Selector de idioma -->
   <app-language-selector></app-language-selector>
 
-  <app-sections-info-user iconName="library-outline" translationKey="TABS.PROFILE"></app-sections-info-user>
+  <app-sections-info-user (OnClickOpenScreen)="openMyLibrary()" iconName="library-outline" translationKey="TABS.PROFILE"></app-sections-info-user>
 
 
   <!-- Sección Cuenta con traducciones -->

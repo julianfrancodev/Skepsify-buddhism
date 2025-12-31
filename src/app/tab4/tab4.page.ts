@@ -38,6 +38,10 @@ export class Tab4Page implements OnInit {
   ngOnInit() {
   }
 
+  openMyLibrary() {
+    this.router.navigate(['/tabs/tab4/my-library']);
+  }
+
   logout() {
     console.log('logout');
 

@@ -59,6 +59,11 @@ export const routes: Routes = [
           import('../tab4/tab4.page').then((m) => m.Tab4Page),
       },
       {
+        path: 'tab4/my-library',
+        loadComponent: () =>
+          import('../tab4/pages/my-library/my-library.page').then((m) => m.MyLibraryPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',

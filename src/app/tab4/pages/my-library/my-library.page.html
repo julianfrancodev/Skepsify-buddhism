@@ -1,0 +1,49 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="library-toolbar">
+    <ion-title>Mi Biblioteca</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding-top">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mi Biblioteca</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Filtros y Búsqueda -->
+  <div class="filters-container ion-padding-horizontal">
+    <ion-searchbar placeholder="Buscar sesión..." mode="ios" class="custom-searchbar"></ion-searchbar>
+  </div>
+
+  <!-- Lista de Sesiones -->
+  <div class="sessions-grid ion-padding">
+    <!-- Ejemplo de Tarjeta de Sesión (Esto se repetiría con un *ngFor) -->
+    <ion-card class="session-card" button="true">
+      <ion-badge class="duration-badge">15 min</ion-badge>
+      <ion-card-header>
+        <ion-card-subtitle>Mindfulness</ion-card-subtitle>
+        <ion-card-title>Respiración Consciente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Una sesión guiada para encontrar tu centro.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="session-card" button="true">
+      <ion-badge class="duration-badge">30 min</ion-badge>
+      <ion-card-header>
+        <ion-card-subtitle>Sueño Profundo</ion-card-subtitle>
+        <ion-card-title>Relajación Nocturna</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Prepara tu mente y cuerpo para descansar.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
