@@ -23,14 +23,64 @@ import {
     CategoryWithCount
 } from '../models/models';
 
+interface CacheEntry<T> {
+    data: T;
+    timestamp: number;
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class FirestoreService {
     private firestore: Firestore;
 
+    // Cache de datos con tiempo de expiración (5 minutos)
+    private cache = new Map<string, CacheEntry<any>>();
+    private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
+
     constructor(firestore: Firestore) {
         this.firestore = firestore;
+    }
+
+    /**
+     * Verifica si un dato en caché está vigente
+     */
+    private isCacheValid(key: string): boolean {
+        const entry = this.cache.get(key);
+        if (!entry) return false;
+
+        const now = Date.now();
+        return (now - entry.timestamp) < this.CACHE_DURATION;
+    }
+
+    /**
+     * Guarda datos en caché
+     */
+    private setCache<T>(key: string, data: T): void {
+        this.cache.set(key, {
+            data,
+            timestamp: Date.now()
+        });
+    }
+
+    /**
+     * Obtiene datos de caché
+     */
+    private getCache<T>(key: string): T | null {
+        if (!this.isCacheValid(key)) {
+            this.cache.delete(key);
+            return null;
+        }
+
+        const entry = this.cache.get(key);
+        return entry ? entry.data as T : null;
+    }
+
+    /**
+     * Limpia todo el caché
+     */
+    public clearCache(): void {
+        this.cache.clear();
     }
 
     // ========================================
@@ -41,14 +91,24 @@ export class FirestoreService {
      * Obtiene todos los programas de meditación
      */
     async getPrograms(): Promise<Program[]> {
+        const cacheKey = 'programs';
+
+        // Intentar obtener de caché
+        const cached = this.getCache<Program[]>(cacheKey);
+        if (cached) {
+            console.log('📦 Programas obtenidos de caché');
+            return cached;
+        }
+
         try {
+            console.log('🔄 Cargando programas desde Firestore...');
             const q = query(
                 collection(this.firestore, 'programs'),
                 orderBy('order', 'asc')
             );
             const snapshot = await getDocs(q);
 
-            return snapshot.docs.map(doc => {
+            const programs = snapshot.docs.map(doc => {
                 const data = doc.data();
                 return {
                     ...data,
@@ -58,6 +118,10 @@ export class FirestoreService {
                         : new Date(data['createdAt'])
                 } as Program;
             });
+
+            // Guardar en caché
+            this.setCache(cacheKey, programs);
+            return programs;
         } catch (error) {
             console.error('Error obteniendo programas:', error);
             return [];
@@ -107,7 +171,17 @@ export class FirestoreService {
      * Obtiene categorías aleatorias con conteo de sesiones
      */
     async getRandomCategories(count: number = 4): Promise<CategoryWithCount[]> {
+        const cacheKey = `random_categories_${count}`;
+
+        // Intentar obtener de caché
+        const cached = this.getCache<CategoryWithCount[]>(cacheKey);
+        if (cached) {
+            console.log('📦 Categorías obtenidas de caché');
+            return cached;
+        }
+
         try {
+            console.log('🔄 Cargando categorías desde Firestore...');
             const allPrograms = await this.getPrograms();
 
             // Agrupar por categoría y contar sesiones
@@ -141,7 +215,11 @@ export class FirestoreService {
             const shuffled = categories.sort(() => Math.random() - 0.5);
 
             // Retornar las primeras 'count' categorías
-            return shuffled.slice(0, count);
+            const result = shuffled.slice(0, count);
+
+            // Guardar en caché
+            this.setCache(cacheKey, result);
+            return result;
         } catch (error) {
             console.error('Error obteniendo categorías aleatorias:', error);
             return [];
@@ -252,6 +330,14 @@ export class FirestoreService {
      * Obtiene todos los paquetes de un programa
      */
     async getPackagesByProgram(programId: string): Promise<MeditationPackage[]> {
+        const cacheKey = `packages_${programId}`;
+
+        // Intentar obtener de caché
+        const cached = this.getCache<MeditationPackage[]>(cacheKey);
+        if (cached) {
+            return cached;
+        }
+
         try {
             const q = query(
                 collection(this.firestore, `programs/${programId}/packages`),
@@ -259,10 +345,14 @@ export class FirestoreService {
             );
             const snapshot = await getDocs(q);
 
-            return snapshot.docs.map(doc => ({
+            const packages = snapshot.docs.map(doc => ({
                 ...doc.data(),
                 id: doc.id
             } as MeditationPackage));
+
+            // Guardar en caché
+            this.setCache(cacheKey, packages);
+            return packages;
         } catch (error) {
             console.error('Error obteniendo paquetes:', error);
             return [];
@@ -428,7 +518,22 @@ export class FirestoreService {
      * Los paquetes son consistentes durante todo el día
      */
     async getDailyPackages(): Promise<MeditationPackage[]> {
+        // Crear clave de caché basada en el día actual
+        const today = new Date();
+        const dayOfYear = Math.floor(
+            (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
+        );
+        const cacheKey = `daily_packages_${dayOfYear}`;
+
+        // Intentar obtener de caché
+        const cached = this.getCache<MeditationPackage[]>(cacheKey);
+        if (cached) {
+            console.log('📦 Paquetes diarios obtenidos de caché');
+            return cached;
+        }
+
         try {
+            console.log('🔄 Cargando paquetes diarios desde Firestore...');
             const allPrograms = await this.getPrograms();
             const allPackages: MeditationPackage[] = [];
 
@@ -442,17 +547,15 @@ export class FirestoreService {
                 return [];
             }
 
-            // Crear una "semilla" basada en el día del año
-            const today = new Date();
-            const dayOfYear = Math.floor(
-                (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
-            );
-
             // Mezclar paquetes usando la semilla del día
             const shuffled = this.seededShuffle([...allPackages], dayOfYear);
 
             // Retornar los primeros 2 paquetes
-            return shuffled.slice(0, 2);
+            const result = shuffled.slice(0, 2);
+
+            // Guardar en caché (se mantendrá válido todo el día)
+            this.setCache(cacheKey, result);
+            return result;
         } catch (error) {
             console.error('Error obteniendo paquetes diarios:', error);
             return [];
