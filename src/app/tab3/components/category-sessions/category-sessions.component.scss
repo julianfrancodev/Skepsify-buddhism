@@ -58,6 +58,12 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Efecto al pasar el mouse */
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 12px 24px rgba(92, 80, 74, 0.1);
+}
+
 /* Efecto al presionar */
 .category-card:active {
   transform: scale(0.96);

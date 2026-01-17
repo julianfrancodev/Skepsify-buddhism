@@ -1,0 +1,79 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Header -->
+  <div class="courses-header-nav">
+    <ion-icon name="arrow-back-circle-outline" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">{{ categoryName() }}</h1>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="loading-container">
+    <ion-spinner name="circular"></ion-spinner>
+    <p>Cargando sesiones...</p>
+  </div>
+  } @else {
+
+  <!-- Header con total -->
+  <div class="page-header">
+    <h1>{{ categoryName() }}</h1>
+    <p class="subtitle">{{ courses().length }} sesiones disponibles</p>
+  </div>
+
+  <!-- Grid de Sesiones -->
+  <div class="sessions-section">
+    <div class="packages-grid">
+      @for (course of courses(); track course.id) {
+      <ion-card class="package-card" (click)="navigateToSessionDetails(course.id)">
+
+        <!-- Imagen de portada -->
+        @if (course.coverImageUrl) {
+        <div class="card-image" [style.background-image]="'url(' + course.coverImageUrl + ')'"></div>
+        } @else {
+        <div class="card-image placeholder">
+          <ion-icon name="play-circle-outline"></ion-icon>
+        </div>
+        }
+
+        <ion-card-header>
+          <ion-card-subtitle>{{ course.instructor }}</ion-card-subtitle>
+          <ion-card-title>{{ course.title }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p class="package-description">{{ course.description }}</p>
+
+          <div class="package-info">
+            <div class="info-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{ course.durationMinutes }} min</span>
+            </div>
+          </div>
+
+          @if (course.isPremium) {
+          <ion-chip class="premium-chip">Premium</ion-chip>
+          }
+        </ion-card-content>
+
+        <ion-button expand="block" fill="clear" class="view-button">
+          Ver Sesión
+          <ion-icon slot="end" name="play-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-card>
+      }
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  @if (courses().length === 0) {
+  <div class="empty-state">
+    <ion-icon name="folder-outline"></ion-icon>
+    <h3>No hay sesiones disponibles</h3>
+    <p>No se encontraron sesiones en esta categoría</p>
+  </div>
+  }
+
+  }
+
+</ion-content>

@@ -54,6 +54,11 @@ export const routes: Routes = [
           import('../tab3/pages/page-all-complete-courses/page-all-complete-courses.component').then((m) => m.PageAllCompleteCoursesComponent),
       },
       {
+        path: 'tab3/all-courses-by-category/:categoryId',
+        loadComponent: () =>
+          import('../tab3/pages/all-courses-by-category/all-courses-by-category.page').then((m) => m.AllCoursesByCategoryPage),
+      },
+      {
         path: 'tab4',
         loadComponent: () =>
           import('../tab4/tab4.page').then((m) => m.Tab4Page),

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FirestoreService } from '../../../core/services/firestore.service';
 import { CategoryWithCount } from '../../../core/models/models';
 import { IonSpinner } from '@ionic/angular/standalone';
@@ -14,6 +15,7 @@ import { IonSpinner } from '@ionic/angular/standalone';
 export class CategorySessionsComponent implements OnInit {
 
   private firestoreService = inject(FirestoreService);
+  private router = inject(Router);
 
   categories = signal<CategoryWithCount[]>([]);
   loading = signal<boolean>(true);
@@ -27,6 +29,10 @@ export class CategorySessionsComponent implements OnInit {
     const randomCategories = await this.firestoreService.getRandomCategories(4);
     this.categories.set(randomCategories);
     this.loading.set(false);
+  }
+
+  goToCategoryCourses(category: CategoryWithCount) {
+    this.router.navigate(['/tabs/tab3/all-courses-by-category', category.id]);
   }
 
 }

@@ -24,12 +24,20 @@
   text-decoration: none;
 }
 
+/* --- Loading State --- */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
 /* --- Tarjeta del Curso (Rectangular) --- */
 .course-card {
   background-color: #FAFAFA; /* Gris muy claro, casi blanco */
   border-radius: 20px;       /* Bordes redondeados */
   padding: 16px;             /* Relleno interno */
-  margin-bottom: 0px;       /* Separación vertical reducida */
+  margin-bottom: 12px;       /* Separación vertical */
 
   display: flex;             /* Layout horizontal */
   align-items: center;       /* Centrado vertical */
@@ -56,7 +64,18 @@
   align-items: center;
   justify-content: center;
   margin-right: 16px;        /* Espacio con el texto */
-  font-size: 24px;           /* Tamaño del emoji */
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .emoji-placeholder {
+    font-size: 24px;           /* Tamaño del emoji */
+  }
 }
 
 /* --- Información del Curso (Centro) --- */
@@ -85,7 +104,15 @@
 
 /* --- Icono de Candado (Derecha) --- */
 .lock-icon {
-  font-size: 18px;
+  font-size: 20px;
   color: #E0C99A; /* Oro Pálido para indicar Premium */
   margin-left: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 20px;
+  }
 }

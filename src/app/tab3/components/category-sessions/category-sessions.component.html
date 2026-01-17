@@ -8,7 +8,7 @@
   </div>
   } @else {
   @for (category of categories(); track category.id) {
-  <div class="category-card">
+  <div class="category-card" (click)="goToCategoryCourses(category)">
     <div class="cat-emoji">{{ category.emoji }}</div>
     <div class="cat-info">
       <h4 class="cat-title">{{ category.name }}</h4>

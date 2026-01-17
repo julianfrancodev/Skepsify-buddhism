@@ -398,6 +398,67 @@ export class FirestoreService {
         }
     }
 
+    /**
+     * Obtiene todas las sesiones de una categoría específica
+     */
+    async getSessionsByCategory(categoryId: string): Promise<ProgramSession[]> {
+        try {
+            // Obtener todos los programas de la categoría
+            const programs = await this.getProgramsByCategory(categoryId);
+            const allSessions: ProgramSession[] = [];
+
+            // Recopilar todas las sesiones de todos los programas y paquetes
+            for (const program of programs) {
+                const packages = await this.getPackagesByProgram(program.id);
+                for (const pkg of packages) {
+                    const sessions = await this.getSessionsByPackage(program.id, pkg.id);
+                    allSessions.push(...sessions);
+                }
+            }
+
+            return allSessions;
+        } catch (error) {
+            console.error('Error obteniendo sesiones por categoría:', error);
+            return [];
+        }
+    }
+
+    /**
+     * Obtiene 2 paquetes aleatorios que cambian cada día
+     * Los paquetes son consistentes durante todo el día
+     */
+    async getDailyPackages(): Promise<MeditationPackage[]> {
+        try {
+            const allPrograms = await this.getPrograms();
+            const allPackages: MeditationPackage[] = [];
+
+            // Recopilar todos los paquetes de todos los programas
+            for (const program of allPrograms) {
+                const packages = await this.getPackagesByProgram(program.id);
+                allPackages.push(...packages);
+            }
+
+            if (allPackages.length === 0) {
+                return [];
+            }
+
+            // Crear una "semilla" basada en el día del año
+            const today = new Date();
+            const dayOfYear = Math.floor(
+                (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
+            );
+
+            // Mezclar paquetes usando la semilla del día
+            const shuffled = this.seededShuffle([...allPackages], dayOfYear);
+
+            // Retornar los primeros 2 paquetes
+            return shuffled.slice(0, 2);
+        } catch (error) {
+            console.error('Error obteniendo paquetes diarios:', error);
+            return [];
+        }
+    }
+
     // ========================================
     // PROGRESO DEL USUARIO
     // ========================================

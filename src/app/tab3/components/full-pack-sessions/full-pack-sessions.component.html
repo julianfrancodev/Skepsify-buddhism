@@ -3,20 +3,29 @@
   <a class="courses-link" (click)="goToShowAllCourses()">Ver todos</a>
 </div>
 
-<div class="course-card">
-  <div class="course-thumbnail">🌱</div>
-  <div class="course-info">
-    <div class="course-name">Fundamentos del Lamrim</div>
-    <div class="course-meta">7 Días • Nivel Básico</div>
+@if (loading()) {
+  <div class="loading-state">
+    <ion-spinner name="circular"></ion-spinner>
   </div>
-  <div class="lock-icon">🔒</div>
-</div>
-
-<div class="course-card">
-  <div class="course-thumbnail">👁️</div>
-  <div class="course-info">
-    <div class="course-name">Entrenando la Mente</div>
-    <div class="course-meta">14 Días • Lojong</div>
-  </div>
-  <div class="lock-icon">🔒</div>
-</div>
+} @else {
+  @for (package of packages(); track package.id) {
+    <div class="course-card" (click)="navigateToPackage(package)">
+      <div class="course-thumbnail">
+        @if (package.coverImageUrl) {
+          <img [src]="package.coverImageUrl" alt="{{ package.title }}" />
+        } @else {
+          <span class="emoji-placeholder">📚</span>
+        }
+      </div>
+      <div class="course-info">
+        <div class="course-name">{{ package.title }}</div>
+        <div class="course-meta">{{ package.sessionCount }} sesiones • {{ getLevelName(package.level) }}</div>
+      </div>
+      @if (package.isPremium) {
+        <div class="lock-icon">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </div>
+      }
+    </div>
+  }
+}
